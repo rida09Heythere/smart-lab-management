@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% block title %}Computers{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+    <h2>Computers</h2>
+
+    <a href="{{ url_for('add_computer') }}" class="btn btn-primary">
+        <i class="fa-solid fa-plus"></i> Add Computer
+    </a>
+</div>
+
+<div class="table-container">
+    <table>
+
+        <thead>
+            <tr>
+                <th>PC No.</th>
+                <th>Laboratory</th>
+                <th>Processor</th>
+                <th>RAM</th>
+                <th>Storage</th>
+                <th>Operating System</th>
+                <th>Status</th>
+                <th>Last Service</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        {% for computer in computers %}
+
+            <tr>
+
+                <td>{{ computer.pc_number }}</td>
+                <td>{{ computer.lab_number }}</td>
+                <td>{{ computer.processor }}</td>
+                <td>{{ computer.ram_gb }} GB</td>
+                <td>{{ computer.storage_gb }} GB</td>
+                <td>{{ computer.operating_system }}</td>
+                <td>{{ computer.status }}</td>
+                <td>{{ computer.last_service }}</td>
+
+                <td>
+                    <a href="{{ url_for('edit_computer', computer_id=computer.computer_id) }}" class="btn btn-warning btn-sm">
+                        Edit
+                    </a>
+
+                    <a href="{{ url_for('delete_computer', computer_id=computer.computer_id) }}"
+                       class="btn btn-danger btn-sm"
+                       onclick="return confirm('Delete this computer?')">
+                        Delete
+                    </a>
+                </td>
+
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+</div>
+
+{% endblock %}

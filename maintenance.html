@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% block title %}Maintenance{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+
+    <div>
+        <h2>Maintenance</h2>
+        <p>Maintenance and repair history of laboratory equipment.</p>
+    </div>
+
+</div>
+
+<div class="table-container">
+
+<table>
+
+<thead>
+<tr>
+    <th>ID</th>
+    <th>Lab</th>
+    <th>Computer</th>
+    <th>Complaint</th>
+    <th>Issue</th>
+    <th>Technician</th>
+    <th>Cost</th>
+    <th>Date</th>
+</tr>
+</thead>
+
+<tbody>
+
+{% for m in maintenance_records %}
+
+<tr>
+
+<td>{{ m.maintenance_id }}</td>
+
+<td>{{ m.lab_number or "-" }}</td>
+
+<td>{{ m.pc_number or "-" }}</td>
+
+<td>{{ m.complaint_title }}</td>
+
+<td>{{ m.issue_type }}</td>
+
+<td>{{ m.technician_name }}</td>
+
+<td>₹{{ m.repair_cost or 0 }}</td>
+
+<td>{{ m.completed_at }}</td>
+
+</tr>
+
+{% else %}
+
+<tr>
+
+<td colspan="8" style="text-align:center;">
+No maintenance records found.
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+{% endblock %}

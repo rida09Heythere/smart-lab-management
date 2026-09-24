@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="card">
+
+        <div class="card-header">
+            <h2>✏️ Edit Hardware Inventory</h2>
+        </div>
+
+        <div class="card-body">
+
+            <form method="POST">
+
+                <label>Hardware Type</label>
+                <select name="category" class="form-control" required>
+                    <option value="">Select Hardware</option>
+
+                    {% for category in categories %}
+                    <option value="{{ category }}"
+                        {% if item.category == category %}selected{% endif %}>
+                        {{ category }}
+                    </option>
+                    {% endfor %}
+
+                </select>
+
+                <br>
+
+                <label>Quantity</label>
+                <input type="number"
+                       name="quantity"
+                       class="form-control"
+                       value="{{ item.quantity }}"
+                       min="0"
+                       required>
+
+                <br>
+
+                <label>Unit</label>
+                <input type="text"
+                       name="unit"
+                       class="form-control"
+                       value="{{ item.unit }}">
+
+                <br>
+
+                <label>Minimum Stock</label>
+                <input type="number"
+                       name="minimum_stock"
+                       class="form-control"
+                       value="{{ item.minimum_stock }}"
+                       min="0">
+
+                <br>
+
+                <label>Storage Location</label>
+                <input type="text"
+                       name="location"
+                       class="form-control"
+                       value="{{ item.location or '' }}"
+                       placeholder="Lab 101">
+
+                <br>
+
+                <button type="submit" class="btn btn-primary">
+                    💾 Update Inventory
+                </button>
+
+                <a href="{{ url_for('inventory') }}" class="btn btn-secondary">
+                    Cancel
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

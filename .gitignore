@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual environment
+venv/
+
+# Environment / secrets
+.env
+config.py
+
+# Backups and temporary files
+app_backup.py
+app.py.save
+*.tar.gz
+
+# Local files
+.DS_Store

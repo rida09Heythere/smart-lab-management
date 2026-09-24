@@ -1,0 +1,190 @@
+/* ===========================
+   Smart College Laboratory Management System
+   Final Login Page CSS
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:linear-gradient(135deg,#1e3c72,#2a5298,#4facfe);
+
+    overflow:hidden;
+}
+
+body::before{
+    content:"";
+    position:absolute;
+    width:700px;
+    height:700px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.08);
+    top:-250px;
+    left:-200px;
+}
+
+body::after{
+    content:"";
+    position:absolute;
+    width:600px;
+    height:600px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.05);
+    bottom:-220px;
+    right:-180px;
+}
+
+.container{
+    position:relative;
+    z-index:10;
+
+    width:420px;
+
+    background:white;
+
+    padding:45px;
+
+    border-radius:20px;
+
+    box-shadow:
+    0 20px 50px rgba(0,0,0,0.25);
+
+    animation:fadeIn .7s ease;
+}
+
+@keyframes fadeIn{
+
+from{
+opacity:0;
+transform:translateY(30px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+h1{
+
+text-align:center;
+
+font-size:28px;
+
+color:#1e3c72;
+
+margin-bottom:10px;
+
+}
+
+.subtitle{
+
+text-align:center;
+
+color:#666;
+
+margin-bottom:35px;
+
+font-size:15px;
+
+}
+
+label{
+
+font-weight:600;
+
+color:#444;
+
+display:block;
+
+margin-bottom:8px;
+
+}
+
+input{
+
+width:100%;
+
+padding:14px;
+
+border:1px solid #dcdcdc;
+
+border-radius:10px;
+
+font-size:15px;
+
+margin-bottom:22px;
+
+transition:.3s;
+
+}
+
+input:focus{
+
+border-color:#2563eb;
+
+outline:none;
+
+box-shadow:0 0 10px rgba(37,99,235,.25);
+
+}
+
+button{
+
+width:100%;
+
+padding:15px;
+
+border:none;
+
+border-radius:10px;
+
+background:linear-gradient(135deg,#2563eb,#1d4ed8);
+
+color:white;
+
+font-size:17px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+button:hover{
+
+transform:translateY(-2px);
+
+box-shadow:0 10px 20px rgba(37,99,235,.35);
+
+}
+
+button:active{
+
+transform:scale(.98);
+
+}
+
+.footer{
+
+margin-top:25px;
+
+text-align:center;
+
+font-size:13px;
+
+color:#888;
+
+}

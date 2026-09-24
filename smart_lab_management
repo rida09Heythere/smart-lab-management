@@ -1,0 +1,14 @@
+import pymysql
+
+DB_HOST="localhost"
+DB_USER="root"
+DB_PASSWORD="YOUR_MARIADB_PASSWORD"
+DB_NAME="smart_lab_management"
+
+def get_connection():
+    return pymysql.connect(
+       host=DB_HOST,
+       user=DB_USER,
+       password=DB_PASSWORD,
+       database=DB_NAME,
+cursorclass=pymysql.cursors.DictCursor)

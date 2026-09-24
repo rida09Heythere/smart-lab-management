@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Laboratories - Student Portal</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body>
+
+<div class="student-dashboard">
+
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="student-sidebar">
+
+        <div class="student-logo">
+
+            <h2>Smart Lab</h2>
+
+            <p>Student Portal</p>
+
+        </div>
+
+
+        <nav>
+
+            <a href="{{ url_for('user_dashboard') }}">
+                🏠 Dashboard
+            </a>
+
+            <a href="{{ url_for('student_laboratories') }}"
+               class="active">
+                🔬 Laboratories
+            </a>
+
+            <a href="#">
+                🛠️ Maintenance
+            </a>
+
+            <a href="{{ url_for('student_complaints') }}">
+                📝 Complaints
+            </a>
+
+        </nav>
+
+
+        <div class="student-logout">
+
+            <a href="{{ url_for('logout') }}">
+                🚪 Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="student-main">
+
+
+        <!-- Header -->
+
+        <header class="student-header">
+
+            <div>
+
+                <h1>
+                    Laboratories
+                </h1>
+
+                <p>
+                    View laboratory availability and computer status
+                </p>
+
+            </div>
+
+
+            <div class="student-profile">
+
+                <div class="student-avatar">
+                    {{ session.get('full_name', 'S')[0] }}
+                </div>
+
+                <div>
+
+                    <strong>
+                        {{ session.get('full_name', 'Student') }}
+                    </strong>
+
+                    <small>
+                        Student
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =========================
+             INFORMATION BANNER
+        ========================== -->
+
+        <section class="student-welcome">
+
+            <h2>
+                Laboratory Overview 🔬
+            </h2>
+
+            <p>
+                Check laboratory availability and see the current
+                working status of computers before using a lab.
+            </p>
+
+        </section>
+
+
+
+        <!-- =========================
+             LABORATORY CARDS
+        ========================== -->
+
+        <section class="student-lab-grid">
+
+
+            {% if laboratories %}
+
+                {% for lab in laboratories %}
+
+
+                <div class="student-lab-card">
+
+
+                    <!-- Lab Header -->
+
+                    <div class="student-lab-header">
+
+                        <div>
+
+                            <span class="student-lab-label">
+                                LABORATORY
+                            </span>
+
+                            <h2>
+                                Lab {{ lab.lab_number }}
+                            </h2>
+
+                        </div>
+
+
+                        {% if lab.status == 'Active' %}
+
+                            <span class="lab-status lab-active">
+                                ● Available
+                            </span>
+
+                        {% elif lab.status == 'Under Maintenance' %}
+
+                            <span class="lab-status lab-maintenance">
+                                ● Under Maintenance
+                            </span>
+
+                        {% else %}
+
+                            <span class="lab-status lab-closed">
+                                ● Closed
+                            </span>
+
+                        {% endif %}
+
+                    </div>
+
+
+
+                    <!-- Lab Details -->
+
+                    <div class="student-lab-details">
+
+
+                        <div class="lab-detail">
+
+                            <span>
+                                Floor
+                            </span>
+
+                            <strong>
+                                {{ lab.floor or 'Not specified' }}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="lab-detail">
+
+                            <span>
+                                Capacity
+                            </span>
+
+                            <strong>
+                                {{ lab.capacity }} Students
+                            </strong>
+
+                        </div>
+
+
+                        <div class="lab-detail">
+
+                            <span>
+                                Total PCs
+                            </span>
+
+                            <strong>
+                                {{ lab.total_computers or 0 }}
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- Computer Status -->
+
+                    <div class="student-pc-section">
+
+                        <h3>
+                            Computer Status
+                        </h3>
+
+
+                        <div class="student-pc-status">
+
+
+                            <div class="pc-status-item">
+
+                                <span class="pc-dot pc-working"></span>
+
+                                <div>
+
+                                    <strong>
+                                        {{ lab.working_computers or 0 }}
+                                    </strong>
+
+                                    <small>
+                                        Working
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="pc-status-item">
+
+                                <span class="pc-dot pc-maintenance"></span>
+
+                                <div>
+
+                                    <strong>
+                                        {{ lab.maintenance_computers or 0 }}
+                                    </strong>
+
+                                    <small>
+                                        Maintenance
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="pc-status-item">
+
+                                <span class="pc-dot pc-out"></span>
+
+                                <div>
+
+                                    <strong>
+                                        {{ lab.out_of_service_computers or 0 }}
+                                    </strong>
+
+                                    <small>
+                                        Out of Service
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Lab Availability Message -->
+
+                    {% if lab.status == 'Active' %}
+
+                        <div class="lab-availability available">
+
+                            ✓ This laboratory is currently available.
+
+                        </div>
+
+                    {% elif lab.status == 'Under Maintenance' %}
+
+                        <div class="lab-availability maintenance">
+
+                            ⚠ This laboratory is currently under maintenance.
+
+                        </div>
+
+                    {% else %}
+
+                        <div class="lab-availability closed">
+
+                            ✕ This laboratory is currently closed.
+
+                        </div>
+
+                    {% endif %}
+
+
+                </div>
+
+
+                {% endfor %}
+
+
+            {% else %}
+
+                <div class="student-empty-state">
+
+                    <div>
+                        🔬
+                    </div>
+
+                    <h2>
+                        No Laboratories Found
+                    </h2>
+
+                    <p>
+                        Laboratory information is currently unavailable.
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+</body>
+
+</html>

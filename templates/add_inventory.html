@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="card">
+
+        <div class="card-header">
+            <h2>📦 Add Hardware Inventory</h2>
+        </div>
+
+        <div class="card-body">
+
+            <form method="POST">
+
+                <label>Hardware Type</label>
+                <select name="category" class="form-control" required>
+                    <option value="">Select Hardware</option>
+                    <option>CPU</option>
+                    <option>Monitor</option>
+                    <option>Keyboard</option>
+                    <option>Mouse</option>
+                    <option>Projector</option>
+                    <option>Printer</option>
+                    <option>UPS</option>
+                    <option>RAM</option>
+                    <option>SSD</option>
+                    <option>HDD</option>
+                    <option>LAN Cable</option>
+                    <option>HDMI Cable</option>
+                    <option>Router</option>
+                    <option>Switch</option>
+                    <option>Networking</option>
+                    <option>Electrical</option>
+                    <option>Other</option>
+                </select>
+
+                <br>
+
+                <label>Quantity</label>
+                <input type="number" class="form-control" name="quantity" required>
+
+                <br>
+
+                <label>Unit</label>
+                <label>Unit</label>
+<select class="form-control" name="unit" required>
+    <option value="Piece" selected>Piece</option>
+    <option value="Set">Set</option>
+    <option value="Box">Box</option>
+    <option value="Pack">Pack</option>
+    <option value="Meter">Meter</option>
+    <option value="Roll">Roll</option>
+</select>
+
+                <br>
+
+                <label>Minimum Stock</label>
+                <input type="number" class="form-control" name="minimum_stock" value="5">
+
+                <br>
+
+                <label>Storage Location</label>
+                <input type="text" class="form-control" name="location" placeholder="Lab 101">
+
+                <br>
+
+                <button class="btn btn-primary">
+                    Save Inventory
+                </button>
+
+                <a href="{{ url_for('inventory') }}" class="btn btn-secondary">
+                    Cancel
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

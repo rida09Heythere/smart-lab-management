@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block title %}Add Laboratory{% endblock %}
+
+{% block content %}
+
+<div class="form-container">
+
+<h1>Add Laboratory</h1>
+
+<form method="POST">
+
+<div class="form-group">
+<label>Lab Number</label>
+<input type="number"
+name="lab_number"
+required>
+</div>
+
+<div class="row">
+
+<div class="form-group">
+
+<label>Floor</label>
+
+<select name="floor">
+
+<option>Ground Floor</option>
+<option>First Floor</option>
+<option>Second Floor</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>Capacity</label>
+
+<input
+type="number"
+name="capacity"
+required>
+
+</div>
+
+</div>
+
+<div class="form-group">
+
+<label>Status</label>
+
+<select name="status">
+
+<option>Active</option>
+<option>Under Maintenance</option>
+<option>Closed</option>
+
+</select>
+
+</div>
+
+<button class="btn-primary">
+Save Laboratory
+</button>
+
+</form>
+
+</div>
+
+{% endblock %}

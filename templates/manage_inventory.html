@@ -1,0 +1,243 @@
+{% extends "layout.html" %}
+
+{% block title %}Manage Stock{% endblock %}
+
+{% block content %}
+
+<div class="manage-stock-page">
+
+    <div class="manage-stock-header">
+        <div>
+            <div class="manage-stock-title-row">
+                <div class="manage-stock-icon">📦</div>
+                <div>
+                    <h2>MANAGE STOCK</h2>
+                    <p>Record inventory additions, usage, damage and other stock movements.</p>
+                </div>
+            </div>
+        </div>
+
+        <a href="{{ url_for('inventory') }}" class="stock-back-button">
+            ← Back to Inventory
+        </a>
+    </div>
+
+
+    <div class="stock-layout">
+
+        <!-- Item Information -->
+
+        <div class="stock-item-card">
+
+            <div class="stock-card-heading">
+                <span>📦</span>
+                <div>
+                    <h3>Inventory Item</h3>
+                    <p>Current stock information</p>
+                </div>
+            </div>
+
+            <div class="stock-item-name">
+                {{ item.item_name }}
+            </div>
+
+            <div class="stock-details">
+
+                <div class="stock-detail">
+                    <span>Category</span>
+                    <strong>{{ item.category }}</strong>
+                </div>
+
+                <div class="stock-detail">
+                    <span>Current Stock</span>
+                    <strong class="current-stock">
+                        {{ item.quantity }} {{ item.unit }}
+                    </strong>
+                </div>
+
+                <div class="stock-detail">
+                    <span>Minimum Stock</span>
+                    <strong>
+                        {{ item.minimum_stock }} {{ item.unit }}
+                    </strong>
+                </div>
+
+                <div class="stock-detail">
+                    <span>Location</span>
+                    <strong>
+                        {{ item.location or "Not specified" }}
+                    </strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Stock Movement Form -->
+
+        <div class="stock-form-card">
+
+            <div class="stock-card-heading">
+                <span>🔄</span>
+                <div>
+                    <h3>Record Stock Movement</h3>
+                    <p>This action will automatically update the current quantity.</p>
+                </div>
+            </div>
+
+
+            {% if error %}
+
+            <div class="stock-error">
+                ⚠️ {{ error }}
+            </div>
+
+            {% endif %}
+
+
+            <form method="POST">
+
+                <div class="stock-form-group">
+
+                    <label for="transaction_type">
+                        Stock Action
+                    </label>
+
+                    <select
+                        id="transaction_type"
+                        name="transaction_type"
+                        required
+                    >
+
+                        <option value="">
+                            Select an action
+                        </option>
+
+                        <option value="Added">
+                            ➕ Stock Added
+                        </option>
+
+                        <option value="Used">
+                            📤 Stock Used
+                        </option>
+
+                        <option value="Damaged">
+                            🔨 Stock Damaged
+                        </option>
+
+                        <option value="Lost">
+                            ❌ Stock Lost
+                        </option>
+
+                        <option value="Returned">
+                            ↩️ Stock Returned
+                        </option>
+
+                        <option value="Adjusted">
+                            ⚙️ Stock Adjusted
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="stock-form-group">
+
+                    <label for="quantity">
+                        Quantity
+                    </label>
+
+                    <input
+                        type="number"
+                        id="quantity"
+                        name="quantity"
+                        min="1"
+                        required
+                        placeholder="Enter quantity"
+                    >
+
+                </div>
+
+
+                <div class="stock-form-group">
+
+                    <label for="reason">
+                        Reason / Description
+                    </label>
+
+                    <textarea
+                        id="reason"
+                        name="reason"
+                        rows="4"
+                        placeholder="Example: CPU damaged in Laboratory 2"
+                    ></textarea>
+
+                </div>
+
+
+                <div class="stock-action-guide">
+
+                    <h4>How stock actions work</h4>
+
+                    <div class="stock-guide-row">
+                        <span>➕ Added</span>
+                        <p>Increases available stock.</p>
+                    </div>
+
+                    <div class="stock-guide-row">
+                        <span>📤 Used</span>
+                        <p>Removes items that were issued or consumed.</p>
+                    </div>
+
+                    <div class="stock-guide-row">
+                        <span>🔨 Damaged</span>
+                        <p>Removes damaged items from available stock.</p>
+                    </div>
+
+                    <div class="stock-guide-row">
+                        <span>❌ Lost</span>
+                        <p>Removes items that are missing.</p>
+                    </div>
+
+                    <div class="stock-guide-row">
+                        <span>↩️ Returned</span>
+                        <p>Adds items that were returned to inventory.</p>
+                    </div>
+
+                    <div class="stock-guide-row">
+                        <span>⚙️ Adjusted</span>
+                        <p>Sets the stock to an exact quantity.</p>
+                    </div>
+
+                </div>
+
+
+                <div class="stock-form-actions">
+
+                    <a
+                        href="{{ url_for('inventory') }}"
+                        class="stock-cancel-button"
+                    >
+                        Cancel
+                    </a>
+
+                    <button
+                        type="submit"
+                        class="stock-submit-button"
+                    >
+                        ✓ Record Movement
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

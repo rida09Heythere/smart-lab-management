@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="student-dashboard">
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="student-sidebar">
+
+        <div class="student-logo">
+            <h2>Smart Lab</h2>
+            <p>Student Portal</p>
+        </div>
+
+        <nav>
+
+            <a href="{{ url_for('user_dashboard') }}" class="active">
+                🏠 Dashboard
+            </a>
+
+            <a href="{{ url_for('student_laboratories') }}" class="active">
+                🔬 Laboratories
+            </a>
+
+            <a href="{{ url_for('student_maintenance') }}" class="active">
+                🛠️ Maintenance
+            </a>
+
+            <a href="{{ url_for('student_complaints') }}">
+                📝 Complaints
+            </a>
+        </nav>
+
+        <div class="student-logout">
+
+            <a href="{{ url_for('logout') }}">
+                🚪 Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="student-main">
+
+        <!-- Header -->
+
+        <header class="student-header">
+
+            <div>
+
+                <h1>Student Dashboard</h1>
+
+                <p>
+                    Welcome back, {{ user.full_name }}!
+                </p>
+
+            </div>
+
+
+            <div class="student-profile">
+
+                <div class="student-avatar">
+                    {{ user.full_name[0] }}
+                </div>
+
+                <div>
+
+                    <strong>
+                        {{ user.full_name }}
+                    </strong>
+
+                    <small>
+                        {{ user.department }}
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =========================
+             WELCOME BANNER
+        ========================== -->
+
+        <section class="student-welcome">
+
+            <h2>
+                Welcome, {{ user.full_name }} 👋
+            </h2>
+
+            <p>
+                Access laboratory information, report issues,
+                and stay updated with laboratory activities.
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             DASHBOARD CARDS
+        ========================== -->
+
+        <section class="student-cards">
+
+
+            <!-- Laboratories -->
+
+<a href="{{ url_for('student_laboratories') }}"
+   class="student-card">
+
+    <div class="student-card-icon">
+        🔬 
+    </div>
+
+    <h3>
+        Laboratories
+    </h3>
+
+    <p>
+        View available laboratories
+    </p>
+
+</a>
+
+            <!-- Maintenance -->
+
+<a href="{{ url_for('student_maintenance') }}"
+   class="student-card">
+
+    <div class="student-card-icon">
+        🛠️
+    </div>
+
+    <h3>
+        Maintenance
+    </h3>
+
+    <p>
+        View laboratory maintenance
+    </p>
+
+</a>
+
+            <!-- Complaints -->
+
+            <a href="{{ url_for('student_complaints') }}"
+               class="student-card">
+
+                <div class="student-card-icon">
+                    📝
+                </div>
+
+                <h3>
+                    Complaints
+                </h3>
+
+                <p>
+                    Report laboratory issues
+                </p>
+
+            </a>
+
+
+        </section>
+
+
+        <!-- =========================
+             MY INFORMATION
+        ========================== -->
+
+        <section class="student-info">
+
+            <h2>
+                My Information
+            </h2>
+
+
+            <div class="student-info-grid">
+
+
+                <div>
+
+                    <span>
+                        Full Name
+                    </span>
+
+                    <strong>
+                        {{ user.full_name }}
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Email
+                    </span>
+
+                    <strong>
+                        {{ user.email }}
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Department
+                    </span>
+
+                    <strong>
+                        {{ user.department }}
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Role
+                    </span>
+
+                    <strong>
+                        {{ user.role }}
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+</body>
+</html>

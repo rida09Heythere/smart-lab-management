@@ -1,0 +1,27 @@
+<div class="form-group">
+    <label>Status</label>
+
+    <select name="status" required>
+
+        <option value="Pending"
+            {% if complaint.status == "Pending" %}selected{% endif %}>
+            Pending
+        </option>
+
+        <option value="In Progress"
+            {% if complaint.status == "In Progress" %}selected{% endif %}>
+            In Progress
+        </option>
+
+        <option value="Solved"
+            {% if complaint.status == "Solved" %}selected{% endif %}>
+            Solved
+        </option>
+
+        <option value="Could Not Be Resolved"
+            {% if complaint.status == "Could Not Be Resolved" %}selected{% endif %}>
+            Could Not Be Resolved
+        </option>
+
+    </select>
+</div>

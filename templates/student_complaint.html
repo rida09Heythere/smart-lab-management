@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Complaints</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="student-dashboard">
+
+    <!-- Sidebar -->
+    <aside class="student-sidebar">
+
+        <div class="student-logo">
+            <h2>Smart Lab</h2>
+            <p>Student Portal</p>
+        </div>
+
+        <nav>
+            <a href="{{ url_for('user_dashboard') }}">
+                🏠 Dashboard
+            </a>
+
+            <a href="#">
+                🔬 Laboratories
+            </a>
+
+            <a href="#">
+                🛠️ Maintenance
+            </a>
+
+            <a href="{{ url_for('student_complaints') }}" class="active">
+                📝 Complaints
+            </a>
+
+        </nav>
+
+        <div class="student-logout">
+            <a href="{{ url_for('logout') }}">
+                🚪 Logout
+            </a>
+        </div>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="student-main">
+
+        <header class="student-header">
+
+            <div>
+                <h1>My Complaints</h1>
+                <p>View and track your laboratory complaints.</p>
+            </div>
+
+            <div class="student-profile">
+
+                <div class="student-avatar">
+                    {{ session.get("full_name", session.get("user_name", "S"))[0] }}
+                </div>
+
+                <div>
+                    <strong>
+                        {{ session.get("full_name", session.get("user_name", "Student")) }}
+                    </strong>
+
+                    <small>Student</small>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- Add Complaint Button -->
+
+        <div class="complaint-action">
+            <a href="{{ url_for('student_add_complaint') }}"
+               class="student-pink-button">
+                + Submit New Complaint
+            </a>
+        </div>
+
+
+        <!-- Complaints -->
+
+        <section class="student-info">
+
+            <h2>Complaint History</h2>
+
+            {% if complaints %}
+
+            <div class="student-complaints-list">
+
+                {% for complaint in complaints %}
+
+                <div class="student-complaint-card">
+
+                    <div class="complaint-card-top">
+
+                        <div>
+                            <h3>{{ complaint.title }}</h3>
+
+                            <span class="complaint-category">
+                                {{ complaint.category }}
+                            </span>
+                        </div>
+
+                        <span class="complaint-status status-{{ complaint.status|lower|replace(' ', '-') }}">
+                            {{ complaint.status }}
+                        </span>
+
+                    </div>
+
+
+                    <p class="complaint-description">
+                        {{ complaint.description }}
+                    </p>
+
+
+                    <div class="complaint-details">
+
+                        <div>
+                            <span>Laboratory</span>
+                            <strong>
+                                {{ complaint.lab_number or "Not specified" }}
+                            </strong>
+                        </div>
+
+                        <div>
+                            <span>Computer</span>
+                            <strong>
+                                {{ complaint.pc_number or "Not specified" }}
+                            </strong>
+                        </div>
+
+                        <div>
+                            <span>Priority</span>
+                            <strong class="priority-{{ complaint.priority|lower }}">
+                                {{ complaint.priority }}
+                            </strong>
+                        </div>
+
+                        <div>
+                            <span>Submitted</span>
+                            <strong>
+                                {{ complaint.created_at }}
+                            </strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+            {% else %}
+
+            <div class="no-complaints">
+
+                <div class="no-complaints-icon">📝</div>
+
+                <h3>No complaints yet</h3>
+
+                <p>
+                    You haven't submitted any laboratory complaints.
+                </p>
+
+                <a href="{{ url_for('student_add_complaint') }}"
+                   class="student-pink-button">
+                    Submit Your First Complaint
+                </a>
+
+            </div>
+
+            {% endif %}
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>

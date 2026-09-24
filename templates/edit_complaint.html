@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Complaint - Smart Lab</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <h2>Smart Lab</h2>
+            <p>Administration</p>
+        </div>
+
+        <nav>
+
+            <a href="{{ url_for('dashboard') }}">
+                🏠 Dashboard
+            </a>
+
+            <a href="{{ url_for('complaints') }}" class="active">
+                📝 Complaints
+            </a>
+
+            <a href="#">
+                🛠️ Maintenance
+            </a>
+
+        </nav>
+
+        <div class="logout">
+            <a href="{{ url_for('logout') }}">
+                🚪 Logout
+            </a>
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="main-content">
+
+        <!-- PAGE HEADER -->
+
+        <header class="manage-complaint-header">
+
+            <div class="manage-complaint-heading">
+
+                <div class="manage-complaint-icon">
+                    📝
+                </div>
+
+                <div>
+
+                    <h1>Manage Complaint</h1>
+
+                    <p>
+                        Review and update the complaint status and priority.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= COMPLAINT CARD ================= -->
+
+        <section class="manage-complaint-card">
+
+
+            <!-- Complaint Summary -->
+
+            <div class="complaint-summary">
+
+                <div class="complaint-summary-top">
+
+                    <div>
+
+                        <h2>
+                            {{ complaint.title }}
+                        </h2>
+
+                        <div class="complaint-summary-subtitle">
+                            Complaint #{{ complaint.complaint_id }}
+                        </div>
+
+                    </div>
+
+                    <div class="admin-complaint-status">
+                        {{ complaint.status }}
+                    </div>
+
+                </div>
+
+
+                <!-- Complaint Information -->
+
+                <div class="complaint-info-grid">
+
+                    <div class="complaint-info-item">
+
+                        <span>Student</span>
+
+                        <strong>
+                            {{ complaint.student_name or "Unknown" }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="complaint-info-item">
+
+                        <span>Laboratory</span>
+
+                        <strong>
+                            {{ complaint.lab_number or "Not specified" }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="complaint-info-item">
+
+                        <span>Computer</span>
+
+                        <strong>
+                            {{ complaint.pc_number or "Not specified" }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="complaint-info-item">
+
+                        <span>Category</span>
+
+                        <strong>
+                            {{ complaint.category }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="complaint-info-item">
+
+                        <span>Submitted</span>
+
+                        <strong>
+                            {{ complaint.created_at }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="complaint-info-item">
+
+                        <span>Current Priority</span>
+
+                        <strong>
+                            {{ complaint.priority }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Description -->
+
+                <div class="complaint-description-box">
+
+                    <h3>Description</h3>
+
+                    <p>
+                        {{ complaint.description }}
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= UPDATE ================= -->
+
+            <div class="complaint-update-section">
+
+                <h2>Update Complaint</h2>
+
+
+                <form method="POST"
+                      class="admin-complaint-form">
+
+
+                    <!-- Priority -->
+
+                    <div class="form-group">
+
+                        <label for="priority">
+                            Priority
+                        </label>
+
+                        <select id="priority"
+                                name="priority"
+                                required>
+
+                            <option value="Low"
+                                {% if complaint.priority == "Low" %}selected{% endif %}>
+                                Low
+                            </option>
+
+                            <option value="Medium"
+                                {% if complaint.priority == "Medium" %}selected{% endif %}>
+                                Medium
+                            </option>
+
+                            <option value="High"
+                                {% if complaint.priority == "High" %}selected{% endif %}>
+                                High
+                            </option>
+
+                            <option value="Critical"
+                                {% if complaint.priority == "Critical" %}selected{% endif %}>
+                                Critical
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Status -->
+
+                    <div class="form-group">
+
+                        <label for="status">
+                            Status
+                        </label>
+
+                        <select id="status"
+                                name="status"
+                                required>
+
+                            <option value="Pending"
+                                {% if complaint.status == "Pending" %}selected{% endif %}>
+                                Pending
+                            </option>
+
+                            <option value="In Progress"
+                                {% if complaint.status == "In Progress" %}selected{% endif %}>
+                                In Progress
+                            </option>
+
+                            <option value="Solved"
+                                {% if complaint.status == "Solved" %}selected{% endif %}>
+                                Solved
+                            </option>
+
+                            <option value="Could Not be Resolved"
+                                {% if complaint.status == "Could Not be Resolved" %}selected{% endif %}>
+                                Could Not be Resolved
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Buttons -->
+
+                    <div class="admin-complaint-actions">
+
+                        <a href="{{ url_for('complaints') }}"
+                           class="admin-complaint-cancel">
+                            ✕ Cancel
+                        </a>
+
+                        <button type="submit"
+                                class="admin-complaint-update">
+                            ✓ Update Complaint
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+
+</html>

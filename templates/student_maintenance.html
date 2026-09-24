@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>PC Status - Student Portal</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body>
+
+<div class="student-dashboard">
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="student-sidebar">
+
+        <div class="student-logo">
+
+            <h2>Smart Lab</h2>
+
+            <p>Student Portal</p>
+
+        </div>
+
+
+        <nav>
+
+            <a href="{{ url_for('user_dashboard') }}">
+                🏠 Dashboard
+            </a>
+
+            <a href="{{ url_for('student_laboratories') }}">
+                🔬 Laboratories
+            </a>
+
+            <a href="{{ url_for('student_maintenance') }}"
+               class="active">
+                🛠️ Maintenance
+            </a>
+
+            <a href="{{ url_for('student_complaints') }}">
+                📝 Complaints
+            </a>
+
+        </nav>
+
+
+        <div class="student-logout">
+
+            <a href="{{ url_for('logout') }}">
+                🚪 Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="student-main">
+
+
+        <!-- HEADER -->
+
+        <header class="student-header">
+
+            <div>
+
+                <h1>
+                    Lab & PC Status
+                </h1>
+
+                <p>
+                    Check laboratory and computer availability
+                </p>
+
+            </div>
+
+
+            <div class="student-profile">
+
+                <div class="student-avatar">
+                    {{ session.get('full_name', 'S')[0] }}
+                </div>
+
+                <div>
+
+                    <strong>
+                        {{ session.get('full_name', 'Student') }}
+                    </strong>
+
+                    <small>
+                        Student
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- WELCOME -->
+
+        <section class="student-welcome">
+
+            <h2>
+                Computer Availability 🖥️
+            </h2>
+
+            <p>
+                Select a laboratory to check which computers
+                are currently available, under maintenance,
+                or out of service.
+            </p>
+
+        </section>
+
+
+
+        <!-- LAB FILTER -->
+
+        <section class="student-lab-filter">
+
+            <div>
+
+                <label for="lab_id">
+                    Select Laboratory
+                </label>
+
+                <p>
+                    Choose a laboratory to view its computers.
+                </p>
+
+            </div>
+
+
+            <form method="GET"
+                  action="{{ url_for('student_maintenance') }}">
+
+                <select name="lab_id"
+                        id="lab_id"
+                        onchange="this.form.submit()">
+
+                    <option value="">
+                        All Laboratories
+                    </option>
+
+
+                    {% for lab in laboratories %}
+
+                        <option value="{{ lab.lab_id }}"
+                            {% if selected_lab|string == lab.lab_id|string %}
+                                selected
+                            {% endif %}>
+
+                            Lab {{ lab.lab_number }}
+
+                            {% if lab.floor %}
+                                — {{ lab.floor }}
+                            {% endif %}
+
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </form>
+
+        </section>
+
+
+
+        <!-- STATUS LEGEND -->
+
+        <section class="student-status-legend">
+
+            <div>
+
+                <span class="status-indicator status-working"></span>
+
+                <strong>
+                    Working
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span class="status-indicator status-maintenance"></span>
+
+                <strong>
+                    Under Maintenance
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span class="status-indicator status-out"></span>
+
+                <strong>
+                    Out of Service
+                </strong>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- COMPUTER LIST -->
+
+        <section class="student-computer-list">
+
+
+            {% if computers %}
+
+
+                {% for computer in computers %}
+
+
+                <div class="student-computer-card">
+
+
+                    <!-- PC HEADER -->
+
+                    <div class="student-computer-header">
+
+                        <div>
+
+                            <span class="student-lab-label">
+                                LAB {{ computer.lab_number }}
+                            </span>
+
+                            <h2>
+                                {{ computer.pc_number }}
+                            </h2>
+
+                        </div>
+
+
+                        {% if computer.status == 'Working' %}
+
+                            <span class="pc-status-badge pc-working-badge">
+                                ● Working
+                            </span>
+
+                        {% elif computer.status == 'Under Maintenance' %}
+
+                            <span class="pc-status-badge pc-maintenance-badge">
+                                ● Under Maintenance
+                            </span>
+
+                        {% else %}
+
+                            <span class="pc-status-badge pc-out-badge">
+                                ● Out of Service
+                            </span>
+
+                        {% endif %}
+
+                    </div>
+
+
+
+                    <!-- SPECIFICATIONS -->
+
+                    <div class="student-computer-specs">
+
+
+                        <div>
+
+                            <span>
+                                Processor
+                            </span>
+
+                            <strong>
+                                {{ computer.processor or 'Not specified' }}
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                RAM
+                            </span>
+
+                            <strong>
+
+                                {% if computer.ram_gb %}
+                                    {{ computer.ram_gb }} GB
+                                {% else %}
+                                    Not specified
+                                {% endif %}
+
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Storage
+                            </span>
+
+                            <strong>
+
+                                {% if computer.storage_gb %}
+                                    {{ computer.storage_gb }} GB
+                                {% else %}
+                                    Not specified
+                                {% endif %}
+
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Operating System
+                            </span>
+
+                            <strong>
+                                {{ computer.operating_system or 'Not specified' }}
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- SERVICE INFORMATION -->
+
+                    <div class="student-computer-service">
+
+
+                        <div>
+
+                            <span>
+                                Floor
+                            </span>
+
+                            <strong>
+                                {{ computer.floor or 'Not specified' }}
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Last Service
+                            </span>
+
+                            <strong>
+
+                                {% if computer.last_service %}
+
+                                    {{ computer.last_service.strftime('%d %b %Y') }}
+
+                                {% else %}
+
+                                    Not recorded
+
+                                {% endif %}
+
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Remarks
+                            </span>
+
+                            <strong>
+                                {{ computer.remarks or 'No remarks' }}
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- AVAILABILITY MESSAGE -->
+
+                    {% if computer.lab_status == 'Under Maintenance' %}
+
+                        <div class="student-pc-warning">
+
+                            ⚠️ This laboratory is currently under maintenance.
+
+                        </div>
+
+                    {% elif computer.lab_status == 'Closed' %}
+
+                        <div class="student-pc-danger">
+
+                            ✕ This laboratory is currently closed.
+
+                        </div>
+
+                    {% elif computer.status == 'Working' %}
+
+                        <div class="student-pc-success">
+
+                            ✓ This computer is currently available for use.
+
+                        </div>
+
+                    {% elif computer.status == 'Under Maintenance' %}
+
+                        <div class="student-pc-warning">
+
+                            ⚠️ This computer is currently under maintenance.
+
+                        </div>
+
+                    {% else %}
+
+                        <div class="student-pc-danger">
+
+                            ✕ This computer is currently unavailable.
+
+                        </div>
+
+                    {% endif %}
+
+
+                </div>
+
+
+                {% endfor %}
+
+
+            {% else %}
+
+
+                <div class="student-empty-state">
+
+                    <div>
+                        🖥️
+                    </div>
+
+                    <h2>
+                        No Computers Found
+                    </h2>
+
+                    <p>
+                        No computers are currently registered
+                        for the selected laboratory.
+                    </p>
+
+                </div>
+
+
+            {% endif %}
+
+
+        </section>
+
+
+    </main>
+
+</div>
+
+</body>
+
+</html>

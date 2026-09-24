@@ -1,0 +1,117 @@
+{% extends "layout.html" %}
+
+{% block title %}Complaints{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+    <h2>Received Complaints</h2>
+    <p> Complaints Submitted by students and teachers will appear here. </p>
+
+</div>
+
+<div class="table-container">
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Laboratory</th>
+                <th>Computer</th>
+                <th>Category</th>
+                <th>Title</th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Assigned To</th>
+                <th>Created</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for complaint in complaints %}
+
+            <tr>
+
+                <td>{{ complaint.complaint_id }}</td>
+
+                <td>
+                    Lab {{ complaint.lab_number }}
+                </td>
+
+                <td>
+                    {% if complaint.pc_number %}
+                        {{ complaint.pc_number }}
+                    {% else %}
+                        —
+                    {% endif %}
+                </td>
+
+                <td>{{ complaint.category }}</td>
+
+                <td>{{ complaint.title }}</td>
+
+                <td>
+                    <span class="status">
+                        {{ complaint.priority }}
+                    </span>
+                </td>
+
+                <td>
+                    <span class="status">
+                        {{ complaint.status }}
+                    </span>
+                </td>
+
+                <td>
+                    {% if complaint.assigned_to %}
+                        {{ complaint.assigned_to }}
+                    {% else %}
+                        Not Assigned
+                    {% endif %}
+                </td>
+
+                <td>{{ complaint.created_at }}</td>
+
+<td class="complaint-actions">
+
+    <a href="{{ url_for('edit_complaint',
+        complaint_id=complaint.complaint_id) }}"
+        class="btn-primary">
+        ⚙ Manage
+    </a>
+
+    {% if complaint.status == "Pending" %}
+
+    <a href="{{ url_for('start_maintenance',
+        complaint_id=complaint.complaint_id) }}"
+        class="btn-warning">
+        ▶ Start Maintenance
+    </a>
+
+    {% endif %}
+
+</td>
+               </td>
+
+            </tr>
+
+            {% else %}
+
+            <tr>
+                <td colspan="10" style="text-align:center; padding:30px;">
+                    No complaints found.
+                </td>
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

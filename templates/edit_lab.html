@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+
+{% block title %}Edit Laboratory{% endblock %}
+
+{% block content %}
+
+<div class="form-container">
+
+    <h1>Edit Laboratory</h1>
+
+    <form method="POST">
+
+        <div class="form-group">
+            <label>Lab Number</label>
+            <input
+                type="number"
+                name="lab_number"
+                value="{{ lab.lab_number }}"
+                required>
+        </div>
+
+        <div class="row">
+
+            <div class="form-group">
+                <label>Floor</label>
+
+                <select name="floor">
+
+                    <option value="Ground Floor"
+                    {% if lab.floor=="Ground Floor" %}selected{% endif %}>
+                    Ground Floor
+                    </option>
+
+                    <option value="First Floor"
+                    {% if lab.floor=="First Floor" %}selected{% endif %}>
+                    First Floor
+                    </option>
+
+                    <option value="Second Floor"
+                    {% if lab.floor=="Second Floor" %}selected{% endif %}>
+                    Second Floor
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+                <label>Capacity</label>
+                <input
+                    type="number"
+                    name="capacity"
+                    value="{{ lab.capacity }}"
+                    required>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Status</label>
+
+            <select name="status">
+
+                <option value="Active"
+                {% if lab.status=="Active" %}selected{% endif %}>
+                Active
+                </option>
+
+                <option value="Under Maintenance"
+                {% if lab.status=="Under Maintenance" %}selected{% endif %}>
+                Under Maintenance
+                </option>
+
+                <option value="Closed"
+                {% if lab.status=="Closed" %}selected{% endif %}>
+                Closed
+                </option>
+
+            </select>
+
+        </div>
+
+        <button class="btn-primary">
+            Update Laboratory
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

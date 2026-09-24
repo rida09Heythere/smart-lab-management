@@ -1,0 +1,166 @@
+{% extends "layout.html" %}
+
+{% block title %}Edit Computer{% endblock %}
+
+{% block content %}
+
+<div class="form-card">
+
+    <div class="form-header">
+        <h2>Edit Computer</h2>
+        <p>Update computer details and laboratory assignment.</p>
+    </div>
+
+    <form method="POST">
+
+        <div class="form-group">
+            <label>Laboratory</label>
+
+            <select name="lab_id" required>
+
+                {% for lab in laboratories %}
+
+                <option value="{{ lab.lab_id }}"
+                    {% if lab.lab_id == computer.lab_id %}
+                    selected
+                    {% endif %}>
+
+                    Lab {{ lab.lab_number }}
+
+                </option>
+
+                {% endfor %}
+
+            </select>
+        </div>
+
+        <div class="form-grid">
+
+            <div class="form-group">
+                <label>PC Number</label>
+
+                <input
+                    type="text"
+                    name="pc_number"
+                    value="{{ computer.pc_number }}"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label>Processor</label>
+
+                <input
+                    type="text"
+                    name="processor"
+                    value="{{ computer.processor }}"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label>RAM (GB)</label>
+
+                <input
+                    type="number"
+                    name="ram_gb"
+                    min="1"
+                    value="{{ computer.ram_gb }}"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label>Storage (GB)</label>
+
+                <input
+                    type="number"
+                    name="storage_gb"
+                    min="1"
+                    value="{{ computer.storage_gb }}"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label>Operating System</label>
+
+                <input
+                    type="text"
+                    name="operating_system"
+                    value="{{ computer.operating_system }}"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label>Status</label>
+
+                <select name="status" required>
+
+                    <option value="Working"
+                        {% if computer.status == "Working" %}
+                        selected
+                        {% endif %}>
+                        Working
+                    </option>
+
+                    <option value="Under Maintenance"
+                        {% if computer.status == "Under Maintenance" %}
+                        selected
+                        {% endif %}>
+                        Under Maintenance
+                    </option>
+
+                    <option value="Out of Service"
+                        {% if computer.status == "Out of Service" %}
+                        selected
+                        {% endif %}>
+                        Out of Service
+                    </option>
+
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Purchase Date</label>
+
+                <input
+                    type="date"
+                    name="purchase_date"
+                    value="{{ computer.purchase_date or '' }}">
+            </div>
+
+            <div class="form-group">
+                <label>Last Service Date</label>
+
+                <input
+                    type="date"
+                    name="last_service"
+                    value="{{ computer.last_service or '' }}">
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label>Remarks</label>
+
+            <textarea
+                name="remarks"
+                rows="4"
+                placeholder="Optional notes about this computer">{{ computer.remarks or '' }}</textarea>
+        </div>
+
+        <div class="form-actions">
+
+            <button type="submit" class="btn-primary">
+                Update Computer
+            </button>
+
+            <a href="{{ url_for('computers') }}"
+               class="btn-secondary">
+                Cancel
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,4916 @@
+/* ==========================
+   GLOBAL
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+}
+
+/* ==========================
+   SIDEBAR
+========================== */
+
+.sidebar{
+
+    width:250px;
+    min-height:100vh;
+    background:#1e3a8a;
+    color:white;
+    position:fixed;
+    left:0;
+    top:0;
+
+}
+
+.sidebar h2{
+
+    text-align:center;
+    padding:25px 0;
+    border-bottom:1px solid rgba(255,255,255,.2);
+
+}
+
+.sidebar ul{
+
+    list-style:none;
+
+}
+
+.sidebar ul li{
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+.sidebar ul li a{
+
+    display:block;
+    color:white;
+    text-decoration:none;
+    padding:18px 25px;
+    transition:.3s;
+
+}
+
+.sidebar ul li a:hover{
+
+    background:#2563eb;
+    padding-left:35px;
+
+}
+
+.sidebar i{
+
+    margin-right:12px;
+
+}
+/* Sidebar scrolling fix */
+.sidebar {
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+/* ==========================
+   MAIN CONTENT
+========================== */
+
+.main-content{
+
+    margin-left:250px;
+    width:100%;
+    padding:30px;
+
+}
+
+.topbar{
+
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+    margin-bottom:30px;
+
+}
+
+.page-title{
+
+    margin-bottom:25px;
+    color:#1e293b;
+
+}
+/* ==========================
+   DASHBOARD CARDS
+========================== */
+
+.cards{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    margin-bottom:30px;
+
+}
+
+.card{
+
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    text-align:center;
+    box-shadow:0 3px 10px rgba(0,0,0,.08);
+    transition:.3s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.card i{
+
+    font-size:40px;
+    color:#2563eb;
+    margin-bottom:15px;
+
+}
+
+.card h2{
+
+    font-size:32px;
+    margin-bottom:10px;
+    color:#1e293b;
+
+}
+
+.card p{
+
+    color:#64748b;
+    font-size:16px;
+
+}
+
+.dashboard-message{
+
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+
+}
+
+.dashboard-message h2{
+
+    margin-bottom:12px;
+
+}
+
+/* ==========================
+   TABLES
+========================== */
+
+table{
+
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+
+}
+
+table th{
+
+    background:#1e3a8a;
+    color:white;
+    padding:14px;
+
+}
+
+table td{
+
+    padding:14px;
+    border-bottom:1px solid #ddd;
+
+}
+
+table tr:hover{
+
+    background:#f8fafc;
+
+}
+
+/* ==========================
+   BUTTONS
+========================== */
+
+.btn-primary{
+
+    display:inline-block;
+    background:#2563eb;
+    color:white;
+    text-decoration:none;
+    border:none;
+    padding:12px 20px;
+    border-radius:8px;
+    cursor:pointer;
+    transition:.3s;
+
+}
+
+.btn-primary:hover{
+
+    background:#1d4ed8;
+
+}
+
+.btn-danger{
+
+    display:inline-block;
+    background:#dc2626;
+    color:white;
+    text-decoration:none;
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+
+}
+
+.btn-danger:hover{
+
+    background:#b91c1c;
+
+}
+/* ==========================
+   FORMS
+========================== */
+
+.form-container{
+
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 3px 10px rgba(0,0,0,.08);
+    max-width:700px;
+
+}
+
+.form-container h1{
+
+    margin-bottom:25px;
+
+}
+
+.form-group{
+
+    display:flex;
+    flex-direction:column;
+    margin-bottom:20px;
+
+}
+
+.form-group label{
+
+    margin-bottom:8px;
+    font-weight:bold;
+
+}
+
+.form-group input,
+.form-group select{
+
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:15px;
+
+}
+
+.form-group input:focus,
+.form-group select:focus{
+
+    border-color:#2563eb;
+    outline:none;
+
+}
+
+.row{
+
+    display:flex;
+    gap:20px;
+
+}
+
+.row .form-group{
+
+    flex:1;
+
+}
+
+/* ==========================
+   FLASH MESSAGES
+========================== */
+
+.flash{
+
+    padding:15px;
+    border-radius:8px;
+    margin-bottom:20px;
+    color:white;
+
+}
+
+.flash.success{
+
+    background:#16a34a;
+
+}
+
+.flash.warning{
+
+    background:#f59e0b;
+
+}
+
+.flash.error{
+
+    background:#dc2626;
+
+}
+
+/* ==========================
+   STATUS BADGES
+========================== */
+
+.status{
+
+    padding:6px 12px;
+    border-radius:20px;
+    color:white;
+    font-size:13px;
+    font-weight:bold;
+
+}
+
+.status.active{
+
+    background:#16a34a;
+
+}
+
+.status.maintenance{
+
+    background:#f59e0b;
+
+}
+
+.status.closed{
+
+    background:#dc2626;
+
+}
+
+/* ==========================
+   LINKS
+========================== */
+
+a{
+
+    text-decoration:none;
+
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:768px){
+
+.sidebar{
+
+    width:200px;
+
+}
+
+.main-content{
+
+    margin-left:200px;
+    padding:20px;
+
+}
+
+.row{
+
+    flex-direction:column;
+
+}
+
+.cards{
+
+    grid-template-columns:1fr;
+
+}
+
+.topbar{
+
+    flex-direction:column;
+    gap:10px;
+    text-align:center;
+
+}
+
+table{
+
+    display:block;
+    overflow-x:auto;
+
+}
+
+}
+/* ==========================
+   LOGIN PAGE
+========================== */
+
+.login-page{
+    
+    margin:0;
+    width:100%;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#1e3a8a,#3b82f6);
+
+}
+
+.login-card{
+
+    width:430px;
+    background:white;
+    padding:40px;
+    border-radius:15px;
+    box-shadow:0 15px 40px rgba(0,0,0,.25);
+
+}
+
+.login-card h1{
+
+    text-align:center;
+    color:#1e3a8a;
+    margin-bottom:10px;
+    font-size:34px;
+
+}
+
+.login-card h3{
+
+    text-align:center;
+    color:#555;
+    margin-bottom:30px;
+    font-weight:normal;
+
+}
+
+.login-card .btn-primary{
+
+    width:100%;
+    margin-top:10px;
+
+}
+
+.footer-text{
+
+    text-align:center;
+    margin-top:25px;
+    color:#777;
+    font-size:14px;
+
+}
+/* ==========================================
+   COMPUTER FORMS
+   ========================================== */
+
+.form-card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    max-width: 950px;
+    margin: 20px auto;
+}
+
+.form-header {
+    margin-bottom: 25px;
+}
+
+.form-header h2 {
+    margin: 0 0 5px;
+    font-size: 28px;
+}
+
+.form-header p {
+    margin: 0;
+    color: #64748b;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #334155;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 15px;
+    background: #ffffff;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.form-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.btn-secondary {
+    display: inline-block;
+    padding: 12px 20px;
+    background: #64748b;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+@media (max-width: 700px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-card {
+        padding: 20px;
+    }
+}
+.btn-warning{
+
+    background:#f59e0b;
+    color:white;
+    padding:10px 16px;
+    border-radius:8px;
+    text-decoration:none;
+    margin-left:8px;
+
+}
+.container{
+    width:70%;
+    margin:auto;
+    margin-top:30px;
+}
+
+.card{
+    background:#fff;
+    border-radius:12px;
+    box-shadow:0 3px 12px rgba(0,0,0,.15);
+}
+
+.card-header{
+    background:#1f4fa8;
+    color:white;
+    padding:18px;
+    border-radius:12px 12px 0 0;
+}
+
+.card-body{
+    padding:25px;
+}
+
+.form-control{
+    width:100%;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+}
+
+.btn{
+    padding:10px 18px;
+    border-radius:8px;
+    text-decoration:none;
+    margin-right:10px;
+}
+
+.btn-primary{
+    background:#1f4fa8;
+    color:white;
+}
+
+.btn-secondary{
+    background:#6c757d;
+    color:white;
+}
+.inventory-edit-btn {
+    display: inline-block;
+    background: #2563eb;
+    color: #ffffff !important;
+    padding: 8px 14px;
+    border-radius: 7px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.inventory-edit-btn:hover {
+    opacity: 0.9;
+}
+.inventory-delete-btn {
+    display: inline-block;
+    background: #dc2626;
+    color: #ffffff !important;
+    padding: 8px 14px;
+    border-radius: 7px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    margin-left: 6px;
+}
+
+.inventory-delete-btn:hover {
+    opacity: 0.9;
+}
+.low-stock-badge {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    background: #fee2e2;
+    color: #b91c1c !important;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.stock-badge {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    background: #dcfce7;
+    color: #15803d !important;
+    font-size: 12px;
+    font-weight: 600;
+}
+.stat-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.stat-link:hover {
+    text-decoration: none;
+    color: inherit;
+}
+/* ==========================
+   STUDENT LOGIN
+========================== */
+
+.student-login-page {
+    min-height: 100vh;
+    background: #f4f6f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.student-login-box {
+    background: white;
+    width: 380px;
+    padding: 35px;
+    border-radius: 14px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+}
+
+.student-login-box h1 {
+    text-align: center;
+    margin-bottom: 28px;
+    color: #1e293b;
+}
+
+.student-login-box label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #334155;
+}
+
+.student-login-box input {
+    width: 100%;
+    padding: 13px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.student-login-box input:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+.student-login-box button {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 8px;
+    background: #1e3a8a;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.student-login-box button:hover {
+    background: #2563eb;
+}
+
+.student-login-error {
+    background: #fee2e2;
+    color: #b91c1c;
+    padding: 10px;
+    border-radius: 7px;
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.student-admin-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #1e3a8a;
+    text-decoration: none;
+}
+
+.student-admin-link:hover {
+    text-decoration: underline;
+}
+/* ================================
+   STUDENT DASHBOARD - PINK THEME
+   ================================ */
+
+.student-dashboard {
+    display: flex;
+    min-height: 100vh;
+    background: #fff1f4;
+}
+
+.student-sidebar {
+    width: 250px;
+    min-height: 100vh;
+    background: #c94f70;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+.student-logo {
+    padding: 25px 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.25);
+}
+
+.student-logo h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.student-logo p {
+    margin: 5px 0 0;
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+.student-sidebar nav {
+    padding: 20px 12px;
+}
+
+.student-sidebar nav a {
+    display: block;
+    padding: 14px 16px;
+    margin-bottom: 8px;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.student-sidebar nav a:hover,
+.student-sidebar nav a.active {
+    background: #e987a0;
+}
+
+.student-logout {
+    margin-top: auto;
+    padding: 20px 12px;
+}
+
+.student-logout a {
+    display: block;
+    padding: 14px 16px;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+.student-logout a:hover {
+    background: #e987a0;
+}
+
+.student-main {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    padding: 30px;
+}
+
+.student-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.student-header h1 {
+    color: #8f2945;
+    margin: 0 0 5px;
+}
+
+.student-header p {
+    color: #777;
+}
+
+.student-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.student-profile small {
+    display: block;
+    color: #777;
+    margin-top: 4px;
+}
+
+.student-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #c94f70;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.student-welcome {
+    background: linear-gradient(135deg, #c94f70, #e987a0);
+    color: white;
+    padding: 28px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 12px rgba(201,79,112,0.2);
+}
+
+.student-welcome h2 {
+    margin: 0 0 8px;
+}
+
+.student-welcome p {
+    margin: 0;
+    opacity: 0.9;
+}
+
+.student-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.student-card {
+    background: white;
+    padding: 22px;
+    border-radius: 12px;
+    border-left: 4px solid #c94f70;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    transition: 0.2s;
+}
+
+.student-card:hover {
+    transform: translateY(-3px);
+}
+
+.student-card-icon {
+    font-size: 30px;
+    margin-bottom: 12px;
+}
+
+.student-card h3 {
+    color: #8f2945;
+    margin: 0 0 7px;
+}
+
+.student-card p {
+    color: #777;
+    font-size: 14px;
+    margin: 0;
+}
+
+.student-info {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.student-info h2 {
+    color: #8f2945;
+    margin: 0 0 20px;
+}
+
+.student-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.student-info-grid div {
+    background: #fff1f4;
+    padding: 18px;
+    border-radius: 8px;
+}
+
+.student-info-grid span {
+    display: block;
+    color: #999;
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.student-info-grid strong {
+    color: #8f2945;
+}
+/* =========================================
+   STUDENT COMPLAINTS PAGE
+   ========================================= */
+
+.student-main {
+    background: #fff5f7;
+    min-height: 100vh;
+}
+
+/* Pink action button */
+
+.student-pink-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 22px;
+    background: #c94f70;
+    color: white !important;
+    text-decoration: none !important;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 3px 8px rgba(201, 79, 112, 0.2);
+}
+
+.student-pink-button:hover {
+    background: #a83d5a;
+    transform: translateY(-1px);
+}
+
+/* Complaint action area */
+
+.complaint-action {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 22px;
+}
+
+/* Complaint history container */
+
+.student-info {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 28px;
+    box-shadow: 0 4px 15px rgba(100, 30, 50, 0.07);
+}
+
+.student-info h2 {
+    color: #7f2639;
+    font-size: 22px;
+    margin-bottom: 22px;
+}
+
+/* Complaint cards */
+
+.student-complaints-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.student-complaint-card {
+    background: #fffafb;
+    border: 1px solid #f3d9df;
+    border-left: 5px solid #c94f70;
+    border-radius: 12px;
+    padding: 22px;
+    transition: all 0.2s ease;
+}
+
+.student-complaint-card:hover {
+    border-color: #e7b8c3;
+    box-shadow: 0 5px 15px rgba(201, 79, 112, 0.08);
+}
+
+/* Top section */
+
+.complaint-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.complaint-card-top h3 {
+    color: #7f2639;
+    font-size: 18px;
+    margin: 0 0 8px;
+}
+
+/* Category */
+
+.complaint-category {
+    display: inline-block;
+    padding: 5px 10px;
+    background: #fbe3e8;
+    color: #9b3b53;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Description */
+
+.complaint-description {
+    color: #666;
+    line-height: 1.6;
+    margin: 18px 0;
+    font-size: 14px;
+}
+
+/* Status */
+
+.complaint-status {
+    display: inline-block;
+    padding: 7px 13px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* Status colors */
+
+.status-pending {
+    background: #fff0c7;
+    color: #946c00;
+}
+
+.status-in-progress {
+    background: #e7e2ff;
+    color: #5c4ca8;
+}
+
+.status-solved {
+    background: #dff5e7;
+    color: #287443;
+}
+
+.status-could-not-be-resolved {
+    background: #f9dede;
+    color: #a33b3b;
+}
+
+/* Complaint details */
+
+.complaint-details {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    padding-top: 16px;
+    border-top: 1px solid #f0dfe3;
+}
+
+.complaint-details div {
+    background: #fff1f4;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.complaint-details span {
+    display: block;
+    color: #999;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin-bottom: 5px;
+}
+
+.complaint-details strong {
+    color: #7f2639;
+    font-size: 13px;
+}
+
+/* Priority */
+
+.priority-low {
+    color: #3d7a55 !important;
+}
+
+.priority-medium {
+    color: #947000 !important;
+}
+
+.priority-high {
+    color: #c15b2c !important;
+}
+
+.priority-critical {
+    color: #b52f45 !important;
+}
+
+/* Empty state */
+
+.no-complaints {
+    text-align: center;
+    padding: 55px 20px;
+    background: #fffafb;
+    border: 1px dashed #e5bcc6;
+    border-radius: 12px;
+}
+
+.no-complaints-icon {
+    font-size: 42px;
+    margin-bottom: 12px;
+}
+
+.no-complaints h3 {
+    color: #7f2639;
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.no-complaints p {
+    color: #777;
+    margin-bottom: 20px;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+
+    .complaint-details {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .complaint-action {
+        justify-content: stretch;
+    }
+
+    .student-pink-button {
+        width: 100%;
+    }
+
+    .complaint-card-top {
+        flex-direction: column;
+    }
+
+    .complaint-details {
+        grid-template-columns: 1fr;
+    }
+
+}
+/* =========================================================
+   STUDENT SUBMIT COMPLAINT PAGE
+   ========================================================= */
+
+.student-form-card {
+    background: #ffffff;
+    width: 100%;
+    max-width: 1100px;
+    margin: 10px auto 40px;
+    padding: 35px 40px;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(120, 35, 60, 0.08);
+    border: 1px solid #f2dce2;
+}
+
+/* Page heading */
+
+.student-page-heading {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.student-page-icon {
+    width: 58px;
+    height: 58px;
+    border-radius: 14px;
+    background: #fde7ed;
+    color: #c94f70;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+}
+
+.student-page-heading h1 {
+    margin: 0;
+    color: #8f2945;
+    font-size: 32px;
+}
+
+.student-page-heading p {
+    margin: 6px 0 0;
+    color: #777;
+    font-size: 15px;
+}
+
+/* Form heading */
+
+.student-form-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-bottom: 20px;
+    margin-bottom: 28px;
+    border-bottom: 1px solid #f1dce2;
+}
+
+.form-title-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: #fde7ed;
+    color: #c94f70;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+}
+
+.student-form-title h2 {
+    margin: 0;
+    color: #7f2639;
+    font-size: 22px;
+}
+
+.student-form-title p {
+    margin: 4px 0 0;
+    color: #888;
+    font-size: 13px;
+}
+
+/* Form row */
+
+.student-form-row {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 24px !important;
+    width: 100%;
+}
+
+/* Form groups */
+
+.student-form-group {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    margin-bottom: 22px;
+}
+
+.student-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.student-form-group label span {
+    color: #d13e61;
+}
+
+.student-form-group label small {
+    color: #999;
+    font-weight: 400;
+}
+
+/* Inputs */
+
+.student-form-card input[type="text"],
+.student-form-card input[type="email"],
+.student-form-card input[type="number"],
+.student-form-card select,
+.student-form-card textarea {
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 48px;
+    padding: 12px 15px !important;
+    border: 1px solid #dfcbd1 !important;
+    border-radius: 9px !important;
+    background: #fff !important;
+    color: #333 !important;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s ease;
+}
+
+.student-form-card textarea {
+    min-height: 145px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+.student-form-card input:focus,
+.student-form-card select:focus,
+.student-form-card textarea:focus {
+    border-color: #c94f70 !important;
+    box-shadow: 0 0 0 3px rgba(201, 79, 112, 0.10);
+}
+
+/* Placeholder */
+
+.student-form-card input::placeholder,
+.student-form-card textarea::placeholder {
+    color: #aaa;
+}
+
+/* Help text */
+
+.form-help {
+    margin-top: 6px;
+    color: #999;
+    font-size: 12px;
+}
+
+/* Error */
+
+.student-form-error {
+    background: #fff0f2;
+    border: 1px solid #f1c3cc;
+    color: #a52f49;
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-bottom: 22px;
+    font-size: 14px;
+}
+
+/* Priority information */
+
+.priority-information {
+    margin-top: 5px;
+    margin-bottom: 28px;
+    padding: 18px 20px;
+    background: #fff7f9;
+    border: 1px solid #f2d9df;
+    border-radius: 10px;
+}
+
+.priority-info-title {
+    color: #8f2945;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.priority-guide {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 25px;
+}
+
+.priority-guide > div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+}
+
+.priority-guide strong {
+    color: #444;
+}
+
+.priority-guide small {
+    color: #888;
+    margin-left: 2px;
+}
+
+.priority-dot {
+    width: 9px;
+    height: 9px;
+    min-width: 9px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.priority-dot.low {
+    background: #55a868;
+}
+
+.priority-dot.medium {
+    background: #e5a82e;
+}
+
+.priority-dot.high {
+    background: #e87932;
+}
+
+.priority-dot.critical {
+    background: #d93650;
+}
+
+/* Buttons */
+
+.student-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    padding-top: 5px;
+}
+
+.student-cancel-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 110px;
+    height: 46px;
+    padding: 0 20px;
+    border: 1px solid #d9c8cd;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #555 !important;
+    text-decoration: none !important;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.student-cancel-button:hover {
+    background: #faf4f6;
+}
+
+.student-form-actions .student-pink-button {
+    min-width: 175px;
+    height: 46px;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    .student-form-card {
+        padding: 25px 20px;
+    }
+
+    .student-form-row {
+        grid-template-columns: 1fr !important;
+        gap: 0 !important;
+    }
+
+    .priority-guide {
+        grid-template-columns: 1fr;
+    }
+
+    .student-page-heading h1 {
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .student-form-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .student-form-actions a,
+    .student-form-actions button {
+        width: 100%;
+    }
+}
+/* =========================================
+   ADMIN COMPLAINT - START MAINTENANCE BUTTON
+   ========================================= */
+
+.btn-warning {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 16px;
+    margin-left: 6px;
+    background: #f0a04b;
+    color: #ffffff !important;
+    text-decoration: none !important;
+    border: none;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 6px rgba(240, 160, 75, 0.2);
+}
+
+.btn-warning:hover {
+    background: #d88932;
+    color: #ffffff !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(240, 160, 75, 0.25);
+}
+
+.btn-warning:active {
+    transform: translateY(0);
+}
+/* =========================================================
+   ADMIN - MANAGE COMPLAINT PAGE
+   ========================================================= */
+
+.manage-complaint-page {
+    min-height: 100vh;
+    background: #f4f6f9;
+}
+
+.manage-complaint-main {
+    margin-left: 250px;
+    padding: 35px;
+    min-height: 100vh;
+}
+
+/* Page Header */
+
+.manage-complaint-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.manage-complaint-heading {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.manage-complaint-icon {
+    width: 55px;
+    height: 55px;
+    border-radius: 12px;
+    background: #e8efff;
+    color: #2949a5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+}
+
+.manage-complaint-header h1 {
+    margin: 0;
+    color: #202124;
+    font-size: 30px;
+}
+
+.manage-complaint-header p {
+    margin: 5px 0 0;
+    color: #777;
+    font-size: 14px;
+}
+
+/* Main Card */
+
+.manage-complaint-card {
+    background: #ffffff;
+    max-width: 1050px;
+    border-radius: 14px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+}
+
+/* Complaint Summary */
+
+.complaint-summary {
+    background: #f7f9fc;
+    border: 1px solid #e1e5ec;
+    border-radius: 10px;
+    padding: 22px;
+    margin-bottom: 28px;
+}
+
+.complaint-summary-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.complaint-summary h2 {
+    margin: 0 0 6px;
+    color: #222;
+    font-size: 22px;
+}
+
+.complaint-summary-subtitle {
+    color: #777;
+    font-size: 13px;
+}
+
+/* Status Badge */
+
+.admin-complaint-status {
+    padding: 7px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    background: #fff1c7;
+    color: #896700;
+    white-space: nowrap;
+}
+
+/* Information Grid */
+
+.complaint-info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.complaint-info-item {
+    background: #ffffff;
+    border: 1px solid #e7e9ee;
+    border-radius: 8px;
+    padding: 14px;
+}
+
+.complaint-info-item span {
+    display: block;
+    color: #888;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin-bottom: 5px;
+}
+
+.complaint-info-item strong {
+    color: #333;
+    font-size: 14px;
+}
+
+/* Description */
+
+.complaint-description-box {
+    margin-top: 22px;
+    padding: 18px;
+    background: #ffffff;
+    border: 1px solid #e7e9ee;
+    border-radius: 8px;
+}
+
+.complaint-description-box h3 {
+    margin: 0 0 10px;
+    color: #333;
+    font-size: 15px;
+}
+
+.complaint-description-box p {
+    margin: 0;
+    color: #666;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+/* Update Section */
+
+.complaint-update-section {
+    border-top: 1px solid #e5e7eb;
+    padding-top: 25px;
+}
+
+.complaint-update-section h2 {
+    margin: 0 0 20px;
+    color: #263b80;
+    font-size: 20px;
+}
+
+/* Form */
+
+.admin-complaint-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.admin-complaint-form .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-complaint-form .form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.admin-complaint-form label {
+    margin-bottom: 8px;
+    color: #333;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.admin-complaint-form select,
+.admin-complaint-form input,
+.admin-complaint-form textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #d7dce5;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #333;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    outline: none;
+}
+
+.admin-complaint-form select:focus,
+.admin-complaint-form input:focus,
+.admin-complaint-form textarea:focus {
+    border-color: #3155b7;
+    box-shadow: 0 0 0 3px rgba(49,85,183,0.10);
+}
+
+/* Buttons */
+
+.admin-complaint-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.admin-complaint-cancel {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 110px;
+    height: 44px;
+    padding: 0 18px;
+    border-radius: 7px;
+    border: 1px solid #d2d6dc;
+    background: #ffffff;
+    color: #555 !important;
+    text-decoration: none !important;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.admin-complaint-cancel:hover {
+    background: #f5f6f8;
+}
+
+.admin-complaint-update {
+    min-width: 150px;
+    height: 44px;
+    padding: 0 20px;
+    border: none;
+    border-radius: 7px;
+    background: #3155b7;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.admin-complaint-update:hover {
+    background: #243f91;
+    transform: translateY(-1px);
+}
+
+/* Priority appearance */
+
+.admin-priority-low {
+    color: #38834d !important;
+}
+
+.admin-priority-medium {
+    color: #9a7500 !important;
+}
+
+.admin-priority-high {
+    color: #c45b28 !important;
+}
+
+.admin-priority-critical {
+    color: #c53045 !important;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+
+    .manage-complaint-main {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .complaint-info-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 650px) {
+
+    .admin-complaint-form {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-complaint-form .form-group.full-width {
+        grid-column: auto;
+    }
+
+    .complaint-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .complaint-summary-top {
+        flex-direction: column;
+    }
+
+    .admin-complaint-actions {
+        flex-direction: column;
+    }
+
+    .admin-complaint-cancel,
+    .admin-complaint-update {
+        width: 100%;
+    }
+
+}
+/* =========================================================
+   ADMIN MAINTENANCE PAGE
+   ========================================================= */
+
+.maintenance-page {
+    width: 100%;
+}
+
+/* Header */
+
+.maintenance-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.maintenance-heading {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.maintenance-icon {
+    width: 55px;
+    height: 55px;
+    border-radius: 12px;
+    background: #e8efff;
+    color: #2949a5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+}
+
+.maintenance-heading h2 {
+    margin: 0;
+    color: #202124;
+    font-size: 30px;
+}
+
+.maintenance-heading p {
+    margin: 5px 0 0;
+    color: #777;
+    font-size: 14px;
+}
+
+/* Summary */
+
+.maintenance-summary {
+    min-width: 125px;
+    padding: 12px 18px;
+    background: #ffffff;
+    border: 1px solid #e2e6ee;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.maintenance-summary span {
+    display: block;
+    color: #888;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.maintenance-summary strong {
+    display: block;
+    margin-top: 3px;
+    color: #2949a5;
+    font-size: 23px;
+}
+
+/* Banner */
+
+.maintenance-banner {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #eef3ff;
+    border: 1px solid #d9e2ff;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 22px;
+}
+
+.maintenance-banner-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 9px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.maintenance-banner strong {
+    color: #2949a5;
+    font-size: 14px;
+}
+
+.maintenance-banner p {
+    margin: 3px 0 0;
+    color: #666;
+    font-size: 13px;
+}
+
+/* Main card */
+
+.maintenance-card {
+    background: #ffffff;
+    border-radius: 14px;
+    border: 1px solid #e2e6ee;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+.maintenance-card-header {
+    padding: 22px 25px;
+    border-bottom: 1px solid #e6e9ef;
+}
+
+.maintenance-card-header h3 {
+    margin: 0;
+    color: #222;
+    font-size: 19px;
+}
+
+.maintenance-card-header p {
+    margin: 5px 0 0;
+    color: #888;
+    font-size: 13px;
+}
+
+/* Table */
+
+.maintenance-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.maintenance-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.maintenance-table th {
+    padding: 14px 18px;
+    background: #f7f9fc;
+    color: #666;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    text-align: left;
+    border-bottom: 1px solid #e4e7ec;
+    white-space: nowrap;
+}
+
+.maintenance-table td {
+    padding: 17px 18px;
+    border-bottom: 1px solid #edf0f4;
+    color: #444;
+    font-size: 13px;
+    vertical-align: middle;
+}
+
+.maintenance-table tbody tr:hover {
+    background: #fafbfe;
+}
+
+.maintenance-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Complaint ID */
+
+.maintenance-complaint-id {
+    font-weight: 700;
+    color: #2949a5;
+}
+
+/* Location */
+
+.maintenance-location {
+    color: #555;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+/* Issue */
+
+.maintenance-issue {
+    max-width: 230px;
+}
+
+.maintenance-issue strong {
+    color: #333;
+    font-size: 14px;
+}
+
+/* Priority */
+
+.maintenance-priority {
+    display: inline-block;
+    padding: 6px 11px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.maintenance-priority.priority-low {
+    background: #e5f4e9;
+    color: #347348;
+}
+
+.maintenance-priority.priority-medium {
+    background: #fff3cd;
+    color: #8b6b00;
+}
+
+.maintenance-priority.priority-high {
+    background: #ffe8d9;
+    color: #b65327;
+}
+
+.maintenance-priority.priority-critical {
+    background: #fbe0e4;
+    color: #b42f46;
+}
+
+/* Status */
+
+.maintenance-status {
+    display: inline-block;
+    padding: 6px 11px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.maintenance-status.status-pending {
+    background: #fff3cd;
+    color: #8b6b00;
+}
+
+.maintenance-status.status-progress {
+    background: #e4ecff;
+    color: #3155a7;
+}
+
+/* Actions */
+
+.maintenance-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 85px;
+    padding: 8px 13px;
+    border-radius: 7px;
+    text-decoration: none !important;
+    font-size: 12px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.start-action {
+    background: #3155b7;
+    color: #ffffff !important;
+}
+
+.start-action:hover {
+    background: #243f91;
+    transform: translateY(-1px);
+}
+
+.update-action {
+    background: #eef3ff;
+    color: #3155b7 !important;
+    border: 1px solid #d5dff8;
+}
+
+.update-action:hover {
+    background: #dfe8ff;
+}
+
+/* Empty */
+
+.maintenance-empty {
+    padding: 55px 20px;
+    text-align: center;
+}
+
+.maintenance-empty-icon {
+    width: 55px;
+    height: 55px;
+    margin: 0 auto 14px;
+    border-radius: 50%;
+    background: #e5f4e9;
+    color: #34804c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+}
+
+.maintenance-empty h3 {
+    margin: 0 0 7px;
+    color: #333;
+    font-size: 18px;
+}
+
+.maintenance-empty p {
+    margin: 0;
+    color: #888;
+    font-size: 13px;
+}
+
+/* Responsive */
+
+@media (max-width: 800px) {
+
+    .maintenance-header {
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .maintenance-summary {
+        min-width: 100px;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .maintenance-header {
+        flex-direction: column;
+    }
+
+    .maintenance-summary {
+        width: 100%;
+    }
+
+    .maintenance-heading h2 {
+        font-size: 25px;
+    }
+
+}
+/* =========================================================
+   ADMIN SIDEBAR FIX - MANAGE COMPLAINT
+   ========================================================= */
+
+.layout {
+    min-height: 100vh;
+}
+
+/* Sidebar */
+
+.layout .sidebar {
+    width: 250px;
+    min-width: 250px;
+    height: 100vh;
+    background: #29479b;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Logo */
+
+.layout .sidebar .logo {
+    padding: 30px 25px 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.18);
+}
+
+.layout .sidebar .logo h2 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 27px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.layout .sidebar .logo p {
+    margin: 6px 0 0;
+    color: rgba(255,255,255,0.78);
+    font-size: 13px;
+}
+
+/* Navigation */
+
+.layout .sidebar nav {
+    display: flex;
+    flex-direction: column;
+    padding: 18px 12px;
+    gap: 5px;
+}
+
+/* Navigation links */
+
+.layout .sidebar nav a {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+
+    width: 100% !important;
+    min-height: 45px;
+
+    padding: 11px 14px !important;
+
+    color: rgba(255,255,255,0.82) !important;
+    background: transparent;
+
+    border-radius: 8px;
+
+    text-decoration: none !important;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    transition: all 0.2s ease;
+}
+
+/* Icons */
+
+.layout .sidebar nav a:first-letter {
+    font-size: 17px;
+}
+
+/* Hover */
+
+.layout .sidebar nav a:hover {
+    background: rgba(255,255,255,0.12);
+    color: #ffffff !important;
+}
+
+/* Active page */
+
+.layout .sidebar nav a.active {
+    background: rgba(255,255,255,0.16);
+    color: #ffffff !important;
+    font-weight: 600;
+    box-shadow: inset 3px 0 0 #ffffff;
+}
+
+/* Logout */
+
+.layout .sidebar .logout {
+    margin-top: auto;
+    padding: 15px 12px 25px;
+}
+
+.layout .sidebar .logout a {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+
+    width: 100% !important;
+    min-height: 45px;
+
+    padding: 11px 14px !important;
+
+    color: rgba(255,255,255,0.82) !important;
+    text-decoration: none !important;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    transition: all 0.2s ease;
+}
+
+.layout .sidebar .logout a:hover {
+    background: rgba(255,255,255,0.12);
+    color: #ffffff !important;
+}
+
+/* Main content alignment */
+
+.layout .main-content {
+    margin-left: 250px;
+    min-height: 100vh;
+    padding: 30px 35px;
+    background: #f4f6f9;
+}
+
+/* =========================================================
+   SIDEBAR SCROLLBAR
+   ========================================================= */
+
+.layout .sidebar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.layout .sidebar::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.25);
+    border-radius: 10px;
+}
+/* =========================
+   REPORTS PAGE
+   ========================= */
+
+.reports-page {
+    padding: 30px;
+}
+
+.reports-header {
+    margin-bottom: 28px;
+}
+
+.reports-title-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.reports-icon {
+    width: 58px;
+    height: 58px;
+    border-radius: 14px;
+    background: #eaf2ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+}
+
+.reports-header h2 {
+    margin: 0;
+    font-size: 26px;
+    color: #1e293b;
+}
+
+.reports-header p {
+    margin: 6px 0 0;
+    color: #64748b;
+    font-size: 14px;
+}
+
+
+/* Summary Cards */
+
+.reports-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 28px;
+}
+
+.report-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 22px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 5px 18px rgba(15, 23, 42, 0.06);
+}
+
+.report-card-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 13px;
+    background: #eef4ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.report-card span {
+    display: block;
+    color: #64748b;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.report-card strong {
+    display: block;
+    color: #1e293b;
+    font-size: 25px;
+}
+
+
+/* Report Sections */
+
+.reports-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.report-section {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 24px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 5px 18px rgba(15, 23, 42, 0.06);
+}
+
+.report-section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.section-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 11px;
+    background: #eef4ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+}
+
+.report-section-header h3 {
+    margin: 0;
+    color: #1e293b;
+    font-size: 18px;
+}
+
+.report-section-header p {
+    margin: 4px 0 0;
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+
+/* Report Rows */
+
+.report-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.report-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 4px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.report-row:last-child {
+    border-bottom: none;
+}
+
+.report-label {
+    color: #475569;
+    font-size: 14px;
+}
+
+.report-number {
+    min-width: 34px;
+    height: 30px;
+    padding: 0 9px;
+    border-radius: 8px;
+    background: #eef4ff;
+    color: #2563eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.report-empty {
+    padding: 25px 5px;
+    color: #94a3b8;
+    text-align: center;
+    font-size: 14px;
+}
+
+
+/* Information Box */
+
+.report-info {
+    margin-top: 24px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 18px;
+    padding: 22px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    box-shadow: 0 5px 18px rgba(15, 23, 42, 0.05);
+}
+
+.report-info-icon {
+    font-size: 24px;
+}
+
+.report-info h3 {
+    margin: 0 0 6px;
+    color: #1e293b;
+    font-size: 16px;
+}
+
+.report-info p {
+    margin: 0;
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+/* Responsive */
+
+@media (max-width: 1000px) {
+
+    .reports-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .reports-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .reports-page {
+        padding: 20px;
+    }
+
+    .reports-cards {
+        grid-template-columns: 1fr;
+    }
+
+}
+/* =========================================
+   INVENTORY - STOCK MANAGEMENT
+   ========================================= */
+
+.inventory-stock-btn {
+    display: inline-block;
+    padding: 7px 12px;
+    margin-left: 5px;
+    border-radius: 7px;
+    background: #e8f1ff;
+    color: #2563eb;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    transition: 0.2s;
+}
+
+.inventory-stock-btn:hover {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+
+/* =========================================
+   MANAGE STOCK PAGE
+   ========================================= */
+
+.manage-stock-page {
+    padding: 30px;
+}
+
+.manage-stock-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+.manage-stock-title-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.manage-stock-icon {
+    width: 58px;
+    height: 58px;
+    border-radius: 14px;
+    background: #eaf2ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 27px;
+}
+
+.manage-stock-header h2 {
+    margin: 0;
+    color: #1e293b;
+    font-size: 25px;
+}
+
+.manage-stock-header p {
+    margin: 6px 0 0;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.stock-back-button {
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 9px;
+    background: #ffffff;
+    border: 1px solid #dbe2ea;
+    color: #475569;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.stock-back-button:hover {
+    background: #f8fafc;
+}
+
+
+/* Layout */
+
+.stock-layout {
+    display: grid;
+    grid-template-columns: 0.9fr 1.4fr;
+    gap: 24px;
+    align-items: start;
+}
+
+
+/* Cards */
+
+.stock-item-card,
+.stock-form-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: 0 5px 18px rgba(15, 23, 42, 0.06);
+}
+
+.stock-card-heading {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 22px;
+}
+
+.stock-card-heading > span {
+    width: 44px;
+    height: 44px;
+    border-radius: 11px;
+    background: #eef4ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+}
+
+.stock-card-heading h3 {
+    margin: 0;
+    color: #1e293b;
+    font-size: 18px;
+}
+
+.stock-card-heading p {
+    margin: 4px 0 0;
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+
+/* Item */
+
+.stock-item-name {
+    font-size: 26px;
+    font-weight: 750;
+    color: #1e293b;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eef2f7;
+}
+
+.stock-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-top: 22px;
+}
+
+.stock-detail span {
+    display: block;
+    color: #94a3b8;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.stock-detail strong {
+    color: #334155;
+    font-size: 14px;
+}
+
+.stock-detail .current-stock {
+    color: #2563eb;
+    font-size: 18px;
+}
+
+
+/* Form */
+
+.stock-form-group {
+    margin-bottom: 18px;
+}
+
+.stock-form-group label {
+    display: block;
+    margin-bottom: 7px;
+    color: #334155;
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.stock-form-group input,
+.stock-form-group select,
+.stock-form-group textarea {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #dbe2ea;
+    border-radius: 9px;
+    padding: 11px 13px;
+    font-family: inherit;
+    font-size: 13px;
+    color: #334155;
+    background: #ffffff;
+}
+
+.stock-form-group textarea {
+    resize: vertical;
+}
+
+.stock-form-group input:focus,
+.stock-form-group select:focus,
+.stock-form-group textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.10);
+}
+
+
+/* Error */
+
+.stock-error {
+    background: #fff1f2;
+    color: #be123c;
+    border: 1px solid #fecdd3;
+    border-radius: 9px;
+    padding: 11px 13px;
+    margin-bottom: 18px;
+    font-size: 13px;
+}
+
+
+/* Guide */
+
+.stock-action-guide {
+    margin-top: 22px;
+    padding: 17px;
+    border-radius: 12px;
+    background: #f8fafc;
+    border: 1px solid #eef2f7;
+}
+
+.stock-action-guide h4 {
+    margin: 0 0 12px;
+    color: #334155;
+    font-size: 14px;
+}
+
+.stock-guide-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 0;
+}
+
+.stock-guide-row span {
+    min-width: 95px;
+    color: #475569;
+    font-size: 12px;
+    font-weight: 650;
+}
+
+.stock-guide-row p {
+    margin: 0;
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+
+/* Buttons */
+
+.stock-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.stock-cancel-button,
+.stock-submit-button {
+    padding: 11px 17px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 650;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
+.stock-cancel-button {
+    background: #f1f5f9;
+    color: #475569;
+}
+
+.stock-submit-button {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.stock-submit-button:hover {
+    background: #1d4ed8;
+}
+
+
+/* Responsive */
+
+@media (max-width: 900px) {
+
+    .stock-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .manage-stock-header {
+        align-items: flex-start;
+        gap: 15px;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .manage-stock-page {
+        padding: 20px;
+    }
+
+    .stock-details {
+        grid-template-columns: 1fr;
+    }
+
+    .stock-form-actions {
+        flex-direction: column;
+    }
+
+    .stock-cancel-button,
+    .stock-submit-button {
+        text-align: center;
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+/* =========================================
+   PROFESSIONAL REPORTS PAGE
+   ========================================= */
+
+.reports-page {
+    padding: 30px;
+}
+
+.reports-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.reports-title-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.reports-icon {
+    width: 58px;
+    height: 58px;
+    border-radius: 14px;
+    background: #eaf2ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 27px;
+}
+
+.reports-header h2 {
+    margin: 0;
+    color: #1e293b;
+    font-size: 25px;
+}
+
+.reports-header p {
+    margin: 5px 0 0;
+    color: #64748b;
+    font-size: 13px;
+}
+
+
+/* FILTER */
+
+.report-filter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.report-filter label {
+    color: #64748b;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.report-filter select {
+    padding: 10px 35px 10px 12px;
+    border: 1px solid #dbe2ea;
+    border-radius: 9px;
+    background: white;
+    color: #334155;
+    font-size: 13px;
+}
+
+
+/* PERIOD */
+
+.report-period-card {
+    background: #1e3a8a;
+    color: white;
+    border-radius: 17px;
+    padding: 25px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 25px rgba(30, 58, 138, 0.18);
+}
+
+.report-period-card span {
+    font-size: 11px;
+    opacity: 0.75;
+    letter-spacing: 1px;
+}
+
+.report-period-card h1 {
+    margin: 6px 0 0;
+    font-size: 27px;
+}
+
+.report-period-date {
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+
+/* SECTION */
+
+.report-section {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 17px;
+    padding: 25px;
+    margin-bottom: 24px;
+    box-shadow: 0 5px 18px rgba(15, 23, 42, 0.05);
+}
+
+.report-section-heading {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 22px;
+}
+
+.section-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 11px;
+    background: #eef4ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.report-section-heading h3 {
+    margin: 0;
+    color: #1e293b;
+    font-size: 18px;
+}
+
+.report-section-heading p {
+    margin: 4px 0 0;
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+
+/* METRICS */
+
+.report-metrics {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+}
+
+.report-metric {
+    padding: 17px;
+    background: #f8fafc;
+    border: 1px solid #eef2f7;
+    border-radius: 12px;
+}
+
+.report-metric span {
+    display: block;
+    color: #64748b;
+    font-size: 11px;
+    margin-bottom: 8px;
+}
+
+.report-metric strong {
+    color: #1e293b;
+    font-size: 23px;
+}
+
+.report-metric.highlight {
+    background: #eef4ff;
+    border-color: #dbeafe;
+}
+
+.report-metric.highlight strong {
+    color: #2563eb;
+}
+
+
+/* TABLE */
+
+.report-table-wrapper {
+    overflow-x: auto;
+}
+
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.report-table th {
+    background: #f8fafc;
+    color: #64748b;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    padding: 13px 12px;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.report-table td {
+    padding: 14px 12px;
+    color: #475569;
+    font-size: 13px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.report-table tr:last-child td {
+    border-bottom: none;
+}
+
+.report-table td strong {
+    color: #334155;
+}
+
+.positive {
+    color: #15803d !important;
+    font-weight: 700;
+}
+
+.empty-report {
+    text-align: center;
+    color: #94a3b8 !important;
+    padding: 30px !important;
+}
+
+
+/* LOW STOCK */
+
+.low-stock-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.low-stock-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.low-stock-item:last-child {
+    border-bottom: none;
+}
+
+.low-stock-item strong {
+    display: block;
+    color: #334155;
+    font-size: 14px;
+}
+
+.low-stock-item span {
+    display: block;
+    color: #94a3b8;
+    font-size: 11px;
+    margin-top: 4px;
+}
+
+.low-stock-quantity {
+    padding: 7px 11px;
+    border-radius: 7px;
+    background: #fff1f2;
+    color: #be123c;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.report-success-message {
+    padding: 15px;
+    border-radius: 10px;
+    background: #f0fdf4;
+    color: #15803d;
+    font-size: 13px;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 1100px) {
+
+    .report-metrics {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+}
+
+@media (max-width: 750px) {
+
+    .reports-page {
+        padding: 20px;
+    }
+
+    .reports-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .report-period-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .report-metrics {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .report-metrics {
+        grid-template-columns: 1fr;
+    }
+
+}
+/* =========================================================
+   STUDENT DASHBOARD
+========================================================= */
+
+.student-dashboard {
+    display: flex;
+    min-height: 100vh;
+    background: #fff7f8;
+}
+
+
+/* =========================================================
+   STUDENT SIDEBAR
+========================================================= */
+
+.student-sidebar {
+    width: 250px;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #7f1d3f, #9f3158);
+    color: white;
+    padding: 25px 18px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+
+.student-logo {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+
+.student-logo h2 {
+    margin: 0;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+
+.student-logo p {
+    margin: 6px 0 0;
+    font-size: 13px;
+    opacity: 0.85;
+}
+
+
+/* Sidebar Navigation */
+
+.student-sidebar {
+    width: 250px;
+    height: 100vh;
+    min-height: 100vh;
+
+    background: linear-gradient(180deg, #7f1d3f, #9f3158);
+    color: white;
+
+    padding: 25px 18px;
+
+    display: flex;
+    flex-direction: column;
+
+    box-sizing: border-box;
+
+    /* Allow the sidebar itself to scroll */
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    flex-shrink: 0;
+}
+/* Logout */
+
+.student-logout {
+    margin-top: auto;
+    padding-top: 25px;
+}
+
+
+.student-logout a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 13px 15px;
+
+    color: white;
+    text-decoration: none;
+
+    border-radius: 10px;
+
+    transition: all 0.2s ease;
+}
+
+
+.student-logout a:hover {
+    background: rgba(255, 255, 255, 0.14);
+}
+
+
+/* =========================================================
+   STUDENT MAIN CONTENT
+========================================================= */
+
+.student-main {
+    flex: 1;
+    padding: 35px 45px;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.student-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+}
+
+
+.student-header h1 {
+    margin: 0;
+    font-size: 30px;
+    color: #3f1728;
+}
+
+
+.student-header p {
+    margin: 6px 0 0;
+    color: #777;
+    font-size: 14px;
+}
+
+
+.student-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+
+.student-avatar {
+    width: 45px;
+    height: 45px;
+
+    border-radius: 50%;
+
+    background: #9f3158;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 18px;
+    font-weight: 700;
+}
+
+
+.student-profile strong {
+    display: block;
+    color: #3f1728;
+}
+
+
+.student-profile small {
+    display: block;
+    margin-top: 3px;
+    color: #888;
+}
+
+
+/* =========================================================
+   WELCOME BANNER
+========================================================= */
+
+.student-welcome {
+    background: linear-gradient(
+        135deg,
+        #fff0f3,
+        #ffe2e9
+    );
+
+    border: 1px solid #f6ccd7;
+
+    border-radius: 18px;
+
+    padding: 25px 30px;
+
+    margin-bottom: 30px;
+}
+
+
+.student-welcome h2 {
+    margin: 0 0 8px;
+
+    color: #7f1d3f;
+
+    font-size: 23px;
+}
+
+
+.student-welcome p {
+    margin: 0;
+
+    color: #6b5360;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   STUDENT DASHBOARD CARDS
+========================================================= */
+
+.student-cards {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 20px;
+
+    margin-bottom: 35px;
+}
+
+
+/* Important:
+   Cards are <a> elements now */
+
+.student-card {
+    display: block;
+
+    background: white;
+
+    border: 1px solid #f0d8df;
+
+    border-radius: 16px;
+
+    padding: 25px;
+
+    text-decoration: none;
+
+    color: inherit;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+.student-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 10px 25px rgba(127, 29, 63, 0.12);
+
+    border-color: #d98aa4;
+}
+
+
+.student-card-icon {
+    width: 52px;
+    height: 52px;
+
+    border-radius: 14px;
+
+    background: #fff0f3;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 25px;
+
+    margin-bottom: 17px;
+}
+
+
+.student-card h3 {
+    margin: 0 0 8px;
+
+    color: #3f1728;
+
+    font-size: 18px;
+}
+
+
+.student-card p {
+    margin: 0;
+
+    color: #888;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   MY INFORMATION
+========================================================= */
+
+.student-info {
+    background: white;
+
+    border: 1px solid #f0d8df;
+
+    border-radius: 18px;
+
+    padding: 28px;
+
+    box-sizing: border-box;
+}
+
+
+.student-info h2 {
+    margin: 0 0 22px;
+
+    color: #3f1728;
+
+    font-size: 21px;
+}
+
+
+.student-info-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+
+.student-info-grid div {
+    background: #fff7f8;
+
+    border-radius: 12px;
+
+    padding: 17px;
+}
+
+
+.student-info-grid span {
+    display: block;
+
+    color: #999;
+
+    font-size: 12px;
+
+    margin-bottom: 7px;
+}
+
+
+.student-info-grid strong {
+    display: block;
+
+    color: #3f1728;
+
+    font-size: 14px;
+
+    word-break: break-word;
+}
+
+
+/* =========================================================
+   RESPONSIVE DESIGN
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .student-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .student-info-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 768px) {
+
+    .student-sidebar {
+        width: 210px;
+    }
+
+    .student-main {
+        padding: 25px;
+    }
+
+    .student-header {
+        align-items: flex-start;
+    }
+
+    .student-profile {
+        display: none;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .student-dashboard {
+        display: block;
+    }
+
+    .student-sidebar {
+        width: 100%;
+        min-height: auto;
+    }
+
+    .student-sidebar nav {
+        gap: 4px;
+    }
+
+    .student-logout {
+        margin-top: 15px;
+    }
+
+    .student-main {
+        padding: 20px;
+    }
+
+    .student-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .student-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .student-header h1 {
+        font-size: 25px;
+    }
+
+}
+/* =========================================================
+   STUDENT LABORATORIES PAGE
+========================================================= */
+
+.student-lab-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+}
+
+
+/* =========================================================
+   LAB CARD
+========================================================= */
+
+.student-lab-card {
+    background: white;
+
+    border: 1px solid #f0d8df;
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+    box-sizing: border-box;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.student-lab-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 25px rgba(127, 29, 63, 0.10);
+}
+
+
+/* =========================================================
+   LAB HEADER
+========================================================= */
+
+.student-lab-header {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding-bottom: 20px;
+
+    border-bottom: 1px solid #f2e3e7;
+}
+
+
+.student-lab-label {
+    display: block;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    color: #a56a7e;
+
+    margin-bottom: 5px;
+}
+
+
+.student-lab-header h2 {
+    margin: 0;
+
+    color: #3f1728;
+
+    font-size: 24px;
+}
+
+
+/* =========================================================
+   LAB STATUS
+========================================================= */
+
+.lab-status {
+    padding: 7px 11px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+
+.lab-active {
+    background: #eaf8ef;
+
+    color: #238443;
+}
+
+
+.lab-maintenance {
+    background: #fff4df;
+
+    color: #a86a00;
+}
+
+
+.lab-closed {
+    background: #fdecec;
+
+    color: #b42318;
+}
+
+
+/* =========================================================
+   LAB DETAILS
+========================================================= */
+
+.student-lab-details {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 12px;
+
+    margin-top: 20px;
+}
+
+
+.lab-detail {
+    background: #fff7f8;
+
+    border-radius: 11px;
+
+    padding: 13px;
+}
+
+
+.lab-detail span {
+    display: block;
+
+    font-size: 11px;
+
+    color: #999;
+
+    margin-bottom: 5px;
+}
+
+
+.lab-detail strong {
+    display: block;
+
+    font-size: 14px;
+
+    color: #3f1728;
+}
+
+
+/* =========================================================
+   COMPUTER STATUS
+========================================================= */
+
+.student-pc-section {
+    margin-top: 22px;
+}
+
+
+.student-pc-section h3 {
+    margin: 0 0 13px;
+
+    color: #3f1728;
+
+    font-size: 16px;
+}
+
+
+.student-pc-status {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 10px;
+}
+
+
+.pc-status-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 12px;
+
+    border: 1px solid #f0e3e7;
+
+    border-radius: 10px;
+}
+
+
+.pc-status-item strong {
+    display: block;
+
+    color: #3f1728;
+
+    font-size: 16px;
+}
+
+
+.pc-status-item small {
+    display: block;
+
+    color: #999;
+
+    font-size: 10px;
+
+    margin-top: 2px;
+}
+
+
+.pc-dot {
+    width: 9px;
+
+    height: 9px;
+
+    border-radius: 50%;
+
+    flex-shrink: 0;
+}
+
+
+.pc-working {
+    background: #2e9d57;
+}
+
+
+.pc-maintenance {
+    background: #e6a21a;
+}
+
+
+.pc-out {
+    background: #d64545;
+}
+
+
+/* =========================================================
+   AVAILABILITY MESSAGE
+========================================================= */
+
+.lab-availability {
+    margin-top: 18px;
+
+    padding: 12px 14px;
+
+    border-radius: 10px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+.lab-availability.available {
+    background: #edf9f1;
+
+    color: #267a43;
+}
+
+
+.lab-availability.maintenance {
+    background: #fff6e5;
+
+    color: #986400;
+}
+
+
+.lab-availability.closed {
+    background: #fceded;
+
+    color: #a92727;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.student-empty-state {
+    grid-column: 1 / -1;
+
+    background: white;
+
+    border: 1px solid #f0d8df;
+
+    border-radius: 18px;
+
+    padding: 60px 30px;
+
+    text-align: center;
+}
+
+
+.student-empty-state > div {
+    font-size: 45px;
+
+    margin-bottom: 15px;
+}
+
+
+.student-empty-state h2 {
+    margin: 0 0 8px;
+
+    color: #3f1728;
+}
+
+
+.student-empty-state p {
+    margin: 0;
+
+    color: #999;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .student-lab-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .student-lab-details {
+        grid-template-columns: 1fr;
+    }
+
+    .student-pc-status {
+        grid-template-columns: 1fr;
+    }
+
+    .student-lab-header {
+        flex-direction: column;
+    }
+
+}
+/* =========================================================
+   STUDENT MAINTENANCE / PC STATUS PAGE
+========================================================= */
+
+.student-status-legend {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+
+    background: white;
+
+    border: 1px solid #f0d8df;
+
+    border-radius: 14px;
+
+    padding: 15px 20px;
+
+    margin-bottom: 25px;
+}
+
+
+.student-status-legend div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    color: #555;
+
+    font-size: 13px;
+}
+
+
+.status-indicator {
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+
+    display: inline-block;
+}
+
+
+.status-working {
+    background: #2e9d57;
+}
+
+
+.status-maintenance {
+    background: #e6a21a;
+}
+
+
+.status-out {
+    background: #d64545;
+}
+
+
+/* =========================================================
+   COMPUTER GRID
+========================================================= */
+
+.student-computer-list {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 20px;
+}
+
+
+.student-computer-card {
+    background: white;
+
+    border: 1px solid #f0d8df;
+
+    border-radius: 18px;
+
+    padding: 24px;
+
+    box-sizing: border-box;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.student-computer-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 25px rgba(127, 29, 63, 0.10);
+}
+
+
+/* =========================================================
+   COMPUTER HEADER
+========================================================= */
+
+.student-computer-header {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding-bottom: 18px;
+
+    border-bottom: 1px solid #f2e3e7;
+}
+
+
+.student-computer-header h2 {
+    margin: 0;
+
+    color: #3f1728;
+
+    font-size: 23px;
+}
+
+
+.pc-status-badge {
+    padding: 7px 11px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+
+.pc-working-badge {
+    background: #eaf8ef;
+
+    color: #238443;
+}
+
+
+.pc-maintenance-badge {
+    background: #fff4df;
+
+    color: #a86a00;
+}
+
+
+.pc-out-badge {
+    background: #fdecec;
+
+    color: #b42318;
+}
+
+
+/* =========================================================
+   COMPUTER SPECIFICATIONS
+========================================================= */
+
+.student-computer-specs {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 12px;
+
+    margin-top: 20px;
+}
+
+
+.student-computer-specs div {
+    background: #fff7f8;
+
+    border-radius: 10px;
+
+    padding: 13px;
+}
+
+
+.student-computer-specs span,
+.student-computer-service span {
+    display: block;
+
+    color: #999;
+
+    font-size: 11px;
+
+    margin-bottom: 5px;
+}
+
+
+.student-computer-specs strong,
+.student-computer-service strong {
+    display: block;
+
+    color: #3f1728;
+
+    font-size: 13px;
+
+    word-break: break-word;
+}
+
+
+/* =========================================================
+   SERVICE INFORMATION
+========================================================= */
+
+.student-computer-service {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr 1.5fr;
+
+    gap: 12px;
+
+    margin-top: 12px;
+}
+
+
+.student-computer-service div {
+    border: 1px solid #f0e3e7;
+
+    border-radius: 10px;
+
+    padding: 12px;
+}
+
+
+/* =========================================================
+   STATUS MESSAGES
+========================================================= */
+
+.student-pc-success,
+.student-pc-warning,
+.student-pc-danger {
+    margin-top: 18px;
+
+    padding: 12px 14px;
+
+    border-radius: 10px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+.student-pc-success {
+    background: #edf9f1;
+
+    color: #267a43;
+}
+
+
+.student-pc-warning {
+    background: #fff6e5;
+
+    color: #986400;
+}
+
+
+.student-pc-danger {
+    background: #fceded;
+
+    color: #a92727;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 950px) {
+
+    .student-computer-list {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .student-status-legend {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 12px;
+    }
+
+
+    .student-computer-specs {
+        grid-template-columns: 1fr;
+    }
+
+
+    .student-computer-service {
+        grid-template-columns: 1fr;
+    }
+
+
+    .student-computer-header {
+        flex-direction: column;
+    }
+
+}
+/* =========================================================
+   STUDENT LAB FILTER
+========================================================= */
+
+.student-lab-filter {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 25px;
+
+    background: white;
+
+    border: 1px solid #f0d8df;
+
+    border-radius: 16px;
+
+    padding: 18px 22px;
+
+    margin-bottom: 20px;
+
+    box-sizing: border-box;
+}
+
+
+.student-lab-filter label {
+    display: block;
+
+    color: #3f1728;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    margin-bottom: 4px;
+}
+
+
+.student-lab-filter p {
+    margin: 0;
+
+    color: #999;
+
+    font-size: 12px;
+}
+
+
+.student-lab-filter form {
+    min-width: 220px;
+}
+
+
+.student-lab-filter select {
+    width: 100%;
+
+    padding: 11px 14px;
+
+    border: 1px solid #e4cbd3;
+
+    border-radius: 10px;
+
+    background: white;
+
+    color: #3f1728;
+
+    font-size: 13px;
+
+    outline: none;
+
+    cursor: pointer;
+}
+
+
+.student-lab-filter select:focus {
+    border-color: #a64b6b;
+
+    box-shadow: 0 0 0 3px rgba(166, 75, 107, 0.10);
+}
+
+
+@media (max-width: 650px) {
+
+    .student-lab-filter {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .student-lab-filter form {
+        width: 100%;
+    }
+
+}
+/* =========================================================
+   STUDENT AUTHENTICATION
+========================================================= */
+
+.student-auth-body {
+    margin: 0;
+
+    min-height: 100vh;
+
+    background: #fff7f8;
+
+    font-family: Arial, sans-serif;
+}
+
+
+.student-auth-container {
+    min-height: 100vh;
+
+    display: flex;
+}
+
+
+/* =========================================================
+   LEFT SIDE
+========================================================= */
+
+.student-auth-info {
+    width: 42%;
+
+    background: linear-gradient(
+        145deg,
+        #7f1d3f,
+        #a63b60
+    );
+
+    color: white;
+
+    padding: 55px;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.student-auth-logo h1 {
+    margin: 0;
+
+    font-size: 32px;
+}
+
+
+.student-auth-logo p {
+    margin: 6px 0;
+
+    opacity: 0.85;
+
+    font-size: 14px;
+}
+
+
+.student-auth-message {
+    margin-top: auto;
+
+    margin-bottom: auto;
+
+    max-width: 460px;
+}
+
+
+.student-auth-message h2 {
+    font-size: 34px;
+
+    line-height: 1.2;
+
+    margin-bottom: 18px;
+}
+
+
+.student-auth-message > p {
+    font-size: 15px;
+
+    line-height: 1.7;
+
+    opacity: 0.9;
+
+    margin-bottom: 30px;
+}
+
+
+.student-auth-features {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+
+.student-auth-features div {
+    padding: 13px 15px;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    border-radius: 10px;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   RIGHT SIDE
+========================================================= */
+
+.student-auth-form-container {
+    width: 58%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 40px;
+
+    box-sizing: border-box;
+}
+
+
+.student-auth-form {
+    width: 100%;
+
+    max-width: 520px;
+
+    background: white;
+
+    border: 1px solid #f0d8df;
+
+    border-radius: 20px;
+
+    padding: 35px;
+
+    box-sizing: border-box;
+
+    box-shadow:
+        0 12px 35px rgba(127, 29, 63, 0.08);
+}
+
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.student-auth-heading {
+    margin-bottom: 25px;
+}
+
+
+.student-auth-heading h2 {
+    margin: 0 0 7px;
+
+    color: #3f1728;
+
+    font-size: 26px;
+}
+
+
+.student-auth-heading p {
+    margin: 0;
+
+    color: #999;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.auth-field {
+    margin-bottom: 17px;
+}
+
+
+.auth-field label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #4b2635;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+.auth-field input {
+    width: 100%;
+
+    padding: 12px 14px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #e3ccd4;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    color: #3f1728;
+
+    background: #fff;
+
+    font-size: 13px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.auth-field input:focus {
+    border-color: #a63b60;
+
+    box-shadow:
+        0 0 0 3px rgba(166, 59, 96, 0.10);
+}
+
+
+.auth-field input::placeholder {
+    color: #b5a4aa;
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.auth-error {
+    background: #fdecec;
+
+    color: #b42318;
+
+    border: 1px solid #f4caca;
+
+    border-radius: 9px;
+
+    padding: 11px 13px;
+
+    margin-bottom: 18px;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.student-auth-button {
+    width: 100%;
+
+    border: none;
+
+    border-radius: 10px;
+
+    padding: 13px;
+
+    background: #8f2850;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.student-auth-button:hover {
+    background: #741c3e;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   LOGIN LINK
+========================================================= */
+
+.student-auth-login {
+    text-align: center;
+
+    margin-top: 20px;
+
+    color: #888;
+
+    font-size: 13px;
+}
+
+
+.student-auth-login a {
+    color: #8f2850;
+
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+
+.student-auth-login a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .student-auth-container {
+        flex-direction: column;
+    }
+
+
+    .student-auth-info {
+        width: 100%;
+
+        padding: 35px;
+
+        min-height: 300px;
+    }
+
+
+    .student-auth-message {
+        margin-top: 45px;
+
+        margin-bottom: 0;
+    }
+
+
+    .student-auth-message h2 {
+        font-size: 27px;
+    }
+
+
+    .student-auth-form-container {
+        width: 100%;
+
+        padding: 25px;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .student-auth-info {
+        padding: 25px;
+    }
+
+
+    .student-auth-form-container {
+        padding: 15px;
+    }
+
+
+    .student-auth-form {
+        padding: 25px 20px;
+    }
+
+}

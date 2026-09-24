@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Student Login - Smart Lab</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body class="student-auth-body">
+
+
+<div class="student-auth-container">
+
+
+    <!-- LEFT SIDE -->
+
+    <div class="student-auth-info">
+
+        <div class="student-auth-logo">
+
+            <h1>Smart Lab</h1>
+
+            <p>Student Portal</p>
+
+        </div>
+
+
+        <div class="student-auth-message">
+
+            <h2>
+                Welcome Back 👋
+            </h2>
+
+            <p>
+                Sign in to access your laboratory information,
+                check computer availability, and manage your
+                laboratory complaints.
+            </p>
+
+
+            <div class="student-auth-features">
+
+                <div>
+                    🔬 View Laboratories
+                </div>
+
+                <div>
+                    🖥️ Check PC Availability
+                </div>
+
+                <div>
+                    📝 Submit & Track Complaints
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- RIGHT SIDE -->
+
+    <div class="student-auth-form-container">
+
+        <div class="student-auth-form">
+
+
+            <div class="student-auth-heading">
+
+                <h2>
+                    Student Login
+                </h2>
+
+                <p>
+                    Sign in using your Student ID
+                </p>
+
+            </div>
+
+
+            {% if error %}
+
+                <div class="auth-error">
+                    {{ error }}
+                </div>
+
+            {% endif %}
+
+
+            <form method="POST"
+                  action="{{ url_for('user_login') }}">
+
+
+                <!-- STUDENT ID -->
+
+                <div class="auth-field">
+
+                    <label for="student_id">
+                        Student ID
+                    </label>
+
+                    <input
+                        type="text"
+                        id="student_id"
+                        name="student_id"
+                        placeholder="Enter your Student ID"
+                        autocomplete="username"
+                        required>
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="auth-field">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required>
+
+                </div>
+
+
+                <!-- LOGIN BUTTON -->
+
+                <button
+                    type="submit"
+                    class="student-auth-button">
+
+                    Login
+
+                </button>
+
+
+            </form>
+
+
+            <!-- SIGN UP -->
+
+            <div class="student-auth-login">
+
+                Don't have a student account?
+
+                <a href="{{ url_for('student_signup') }}">
+                    Create Account
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

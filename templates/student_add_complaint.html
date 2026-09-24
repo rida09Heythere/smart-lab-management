@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Submit Complaint - Smart Lab Management</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #1f2937;
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* ================= SIDEBAR ================= */
+
+        .student-sidebar {
+            width: 250px;
+            height: 100vh;
+            min-height: 100vh;
+            background: linear-gradient(180deg, #7f1d3f, #9f3158);
+            color: white;
+            padding: 25px 18px;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            overflow-y: auto;
+            overflow-x: hidden;
+            flex-shrink: 0;
+        }
+
+        .sidebar-logo {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .sidebar-logo h2 {
+            font-size: 21px;
+            margin-bottom: 6px;
+        }
+
+        .sidebar-logo p {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .student-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .student-nav a {
+            text-decoration: none;
+            color: white;
+            padding: 13px 15px;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .student-nav a:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .student-nav a.active {
+            background: rgba(255, 255, 255, 0.2);
+            font-weight: bold;
+        }
+
+        .student-logout {
+            margin-top: auto;
+            padding-top: 25px;
+            flex-shrink: 0;
+        }
+
+        .student-logout a {
+            display: block;
+            text-decoration: none;
+            color: white;
+            background: rgba(0, 0, 0, 0.15);
+            padding: 13px 15px;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+
+        .student-logout a:hover {
+            background: rgba(0, 0, 0, 0.25);
+        }
+
+        .student-sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .student-sidebar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+        }
+
+        /* ================= MAIN ================= */
+
+        .main-content {
+            flex: 1;
+            padding: 35px;
+            overflow-y: auto;
+        }
+
+        .page-header {
+            margin-bottom: 25px;
+        }
+
+        .page-header h1 {
+            font-size: 28px;
+            color: #7f1d3f;
+            margin-bottom: 7px;
+        }
+
+        .page-header p {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        /* ================= FORM CARD ================= */
+
+        .form-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 850px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .form-title {
+            font-size: 19px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            color: #374151;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 9px;
+            font-size: 14px;
+            outline: none;
+            background: white;
+            transition: 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #9f3158;
+            box-shadow: 0 0 0 3px rgba(159, 49, 88, 0.08);
+        }
+
+        .form-group textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .required {
+            color: #dc2626;
+        }
+
+        /* ================= BUTTON ================= */
+
+        .button-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .submit-btn {
+            border: none;
+            background: #7f1d3f;
+            color: white;
+            padding: 13px 24px;
+            border-radius: 9px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .submit-btn:hover {
+            background: #681731;
+        }
+
+        .cancel-btn {
+            text-decoration: none;
+            background: #f3f4f6;
+            color: #374151;
+            padding: 13px 24px;
+            border-radius: 9px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .cancel-btn:hover {
+            background: #e5e7eb;
+        }
+
+        /* ================= ALERT ================= */
+
+        .error-message {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+            padding: 12px 15px;
+            border-radius: 9px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .info-message {
+            background: #f3f4f6;
+            color: #6b7280;
+            padding: 11px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            margin-top: 7px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 800px) {
+
+            body {
+                flex-direction: column;
+            }
+
+            .student-sidebar {
+                width: 100%;
+                height: auto;
+                min-height: auto;
+            }
+
+            .student-logout {
+                margin-top: 20px;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+
+            .form-card {
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="student-sidebar">
+
+        <div class="sidebar-logo">
+            <h2>Smart Lab</h2>
+            <p>Student Portal</p>
+        </div>
+
+        <nav class="student-nav">
+
+            <a href="{{ url_for('user_dashboard') }}">
+                Dashboard
+            </a>
+
+            <a href="{{ url_for('student_laboratories') }}">
+                Laboratories
+            </a>
+
+            <a href="{{ url_for('student_maintenance') }}">
+                Maintenance
+            </a>
+
+            <a href="{{ url_for('student_complaints') }}" class="active">
+                Complaints
+            </a>
+
+        </nav>
+
+        <div class="student-logout">
+            <a href="{{ url_for('logout') }}">
+                Logout
+            </a>
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="main-content">
+
+        <div class="page-header">
+
+            <h1>Submit Complaint</h1>
+
+            <p>
+                Report a laboratory, computer, equipment, or facility-related issue.
+            </p>
+
+        </div>
+
+
+        <div class="form-card">
+
+            <div class="form-title">
+                Complaint Details
+            </div>
+
+
+            {% if error %}
+
+                <div class="error-message">
+                    {{ error }}
+                </div>
+
+            {% endif %}
+
+
+            <form method="POST">
+
+
+                <!-- ================= LABORATORY ================= -->
+
+                <div class="form-group">
+
+                    <label for="lab_id">
+                        Laboratory <span class="required">*</span>
+                    </label>
+
+                    <select name="lab_id" id="lab_id" required>
+
+                        <option value="">
+                            Select Laboratory
+                        </option>
+
+                        {% for lab in laboratories %}
+
+                            <option value="{{ lab.lab_id }}">
+
+                                Lab {{ lab.lab_number }}
+
+                            </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+
+                <!-- ================= COMPUTER ================= -->
+
+                <div class="form-group">
+
+                    <label for="computer_id">
+                        Computer / PC
+                    </label>
+
+                    <select name="computer_id" id="computer_id">
+
+                        <option value="">
+                            Select Laboratory First
+                        </option>
+
+                        {% for computer in computers %}
+
+                            <option
+                                value="{{ computer.computer_id }}"
+                                data-lab-id="{{ computer.lab_id }}"
+                                hidden
+                            >
+                                {{ computer.pc_number }}
+                            </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                    <div class="info-message">
+                        Select a laboratory first to see the computers available in that laboratory.
+                    </div>
+
+                </div>
+
+
+                <!-- ================= CATEGORY ================= -->
+
+                <div class="form-group">
+
+                    <label for="category">
+                        Category <span class="required">*</span>
+                    </label>
+
+                    <select name="category" id="category" required>
+
+                        <option value="">
+                            Select Category
+                        </option>
+
+                        <option value="Hardware">
+                            Hardware
+                        </option>
+
+                        <option value="Software">
+                            Software
+                        </option>
+
+                        <option value="Network">
+                            Network
+                        </option>
+
+                        <option value="Projector">
+                            Projector
+                        </option>
+
+                        <option value="AC">
+                            AC
+                        </option>
+
+                        <option value="Electrical">
+                            Electrical
+                        </option>
+
+                        <option value="Furniture">
+                            Furniture
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- ================= TITLE ================= -->
+
+                <div class="form-group">
+
+                    <label for="title">
+                        Complaint Title <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        name="title"
+                        id="title"
+                        maxlength="150"
+                        placeholder="e.g. Computer is not turning on"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- ================= DESCRIPTION ================= -->
+
+                <div class="form-group">
+
+                    <label for="description">
+                        Description <span class="required">*</span>
+                    </label>
+
+                    <textarea
+                        name="description"
+                        id="description"
+                        placeholder="Describe the problem in detail..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <!-- ================= PRIORITY ================= -->
+
+                <div class="form-group">
+
+                    <label for="priority">
+                        Priority <span class="required">*</span>
+                    </label>
+
+                    <select name="priority" id="priority" required>
+
+                        <option value="">
+                            Select Priority
+                        </option>
+
+                        <option value="Low">
+                            Low
+                        </option>
+
+                        <option value="Medium">
+                            Medium
+                        </option>
+
+                        <option value="High">
+                            High
+                        </option>
+
+                        <option value="Critical">
+                            Critical
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- ================= BUTTONS ================= -->
+
+                <div class="button-row">
+
+                    <button
+                        type="submit"
+                        class="submit-btn"
+                    >
+                        Submit Complaint
+                    </button>
+
+                    <a
+                        href="{{ url_for('student_complaints') }}"
+                        class="cancel-btn"
+                    >
+                        Cancel
+                    </a>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        const labSelect = document.getElementById("lab_id");
+        const computerSelect = document.getElementById("computer_id");
+
+        labSelect.addEventListener("change", function () {
+
+            const selectedLabId = this.value;
+
+            // Reset computer selection
+            computerSelect.value = "";
+
+            // Get every computer option
+            const computerOptions =
+                computerSelect.querySelectorAll("option[data-lab-id]");
+
+
+            computerOptions.forEach(function (option) {
+
+                if (option.dataset.labId === selectedLabId) {
+
+                    // Show PC belonging to selected lab
+                    option.hidden = false;
+
+                } else {
+
+                    // Hide PC belonging to other labs
+                    option.hidden = true;
+
+                }
+
+            });
+
+
+            // Update first option
+            const firstOption = computerSelect.querySelector("option[value='']");
+
+            if (selectedLabId) {
+
+                firstOption.textContent = "Select Computer";
+
+            } else {
+
+                firstOption.textContent = "Select Laboratory First";
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>

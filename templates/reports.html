@@ -1,0 +1,441 @@
+{% extends "layout.html" %}
+
+{% block title %}Reports & Analytics{% endblock %}
+
+{% block content %}
+
+<div class="reports-page">
+
+    <!-- HEADER -->
+    <div class="reports-header">
+
+        <div class="reports-title-row">
+
+            <div class="reports-icon">
+                📊
+            </div>
+
+            <div>
+                <h2>REPORTS & ANALYTICS</h2>
+                <p>Historical activity and monthly performance report</p>
+            </div>
+
+        </div>
+
+        <!-- PERIOD FILTER -->
+        <form method="GET" action="{{ url_for('reports') }}" class="report-filter">
+
+            <label>Report Period</label>
+
+            <select name="period" onchange="this.form.submit()">
+
+                <option value="this_month"
+                    {% if period == "this_month" %}selected{% endif %}>
+                    This Month
+                </option>
+
+                <option value="last_month"
+                    {% if period == "last_month" %}selected{% endif %}>
+                    Last Month
+                </option>
+
+                <option value="this_week"
+                    {% if period == "this_week" %}selected{% endif %}>
+                    This Week
+                </option>
+
+                <option value="last_week"
+                    {% if period == "last_week" %}selected{% endif %}>
+                    Last Week
+                </option>
+
+            </select>
+
+        </form>
+
+    </div>
+
+
+    <!-- REPORT PERIOD -->
+    <div class="report-period-card">
+
+        <div>
+            <span>REPORTING PERIOD</span>
+            <h1>{{ period_title }}</h1>
+        </div>
+
+        <div class="report-period-date">
+            {{ start_date }} → {{ end_date }}
+        </div>
+
+    </div>
+
+
+    <!-- COMPLAINT SUMMARY -->
+    <div class="report-section">
+
+        <div class="report-section-heading">
+
+            <div class="section-icon">
+                📋
+            </div>
+
+            <div>
+                <h3>Complaint Summary</h3>
+                <p>Complaints recorded during this reporting period</p>
+            </div>
+
+        </div>
+
+
+        <div class="report-metrics">
+
+            <div class="report-metric">
+                <span>Received</span>
+                <strong>{{ complaints_received }}</strong>
+            </div>
+
+            <div class="report-metric">
+                <span>✓ Solved</span>
+                <strong>{{ complaint_status["Solved"] }}</strong>
+            </div>
+
+            <div class="report-metric">
+                <span>✕ Could Not Be Resolved</span>
+                <strong>{{ complaint_status["Could Not be Resolved"] }}</strong>
+            </div>
+
+            <div class="report-metric">
+                <span>🔄 In Progress</span>
+                <strong>{{ complaint_status["In Progress"] }}</strong>
+            </div>
+
+            <div class="report-metric">
+                <span>⏳ Pending</span>
+                <strong>{{ complaint_status["Pending"] }}</strong>
+            </div>
+
+            <div class="report-metric highlight">
+                <span>Resolution Rate</span>
+                <strong>{{ resolution_rate }}%</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- INVENTORY REPORT -->
+    <div class="report-section">
+
+        <div class="report-section-heading">
+
+            <div class="section-icon">
+                📦
+            </div>
+
+            <div>
+                <h3>Inventory Movement</h3>
+                <p>Stock movement recorded during {{ period_title }}</p>
+            </div>
+
+        </div>
+
+
+        <div class="report-table-wrapper">
+
+            <table class="report-table">
+
+                <thead>
+
+                    <tr>
+                        <th>Item</th>
+                        <th>Current Stock</th>
+                        <th>Added</th>
+                        <th>Used</th>
+                        <th>Damaged</th>
+                        <th>Lost</th>
+                        <th>Returned</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for item in inventory_reports %}
+
+                    <tr>
+
+                        <td>
+                            <strong>{{ item.item_name }}</strong>
+                        </td>
+
+                        <td>
+                            {{ item.quantity }} {{ item.unit }}
+                        </td>
+
+                        <td class="positive">
+                            +{{ item.added }}
+                        </td>
+
+                        <td>
+                            {{ item.used }}
+                        </td>
+
+                        <td>
+                            {{ item.damaged }}
+                        </td>
+
+                        <td>
+                            {{ item.lost }}
+                        </td>
+
+                        <td class="positive">
+                            +{{ item.returned }}
+                        </td>
+
+                    </tr>
+
+                    {% else %}
+
+                    <tr>
+                        <td colspan="7" class="empty-report">
+                            No inventory items found.
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- LOW STOCK -->
+    <div class="report-section">
+
+        <div class="report-section-heading">
+
+            <div class="section-icon">
+                ⚠️
+            </div>
+
+            <div>
+                <h3>Inventory Requiring Attention</h3>
+                <p>Items currently at or below minimum stock</p>
+            </div>
+
+        </div>
+
+
+        {% if low_stock_items %}
+
+        <div class="low-stock-list">
+
+            {% for item in low_stock_items %}
+
+            <div class="low-stock-item">
+
+                <div>
+                    <strong>{{ item.item_name }}</strong>
+                    <span>
+                        Minimum: {{ item.minimum_stock }} {{ item.unit }}
+                    </span>
+                </div>
+
+                <div class="low-stock-quantity">
+                    {{ item.quantity }} {{ item.unit }}
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <div class="report-success-message">
+            ✓ All inventory items are above their minimum stock level.
+        </div>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- INVENTORY ACTIVITY -->
+    <div class="report-section">
+
+        <div class="report-section-heading">
+
+            <div class="section-icon">
+                🔄
+            </div>
+
+            <div>
+                <h3>Inventory Activity</h3>
+                <p>Stock changes recorded during this period</p>
+            </div>
+
+        </div>
+
+
+        <div class="report-table-wrapper">
+
+            <table class="report-table">
+
+                <thead>
+
+                    <tr>
+                        <th>Date</th>
+                        <th>Item</th>
+                        <th>Action</th>
+                        <th>Quantity</th>
+                        <th>Reason</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for activity in inventory_activity %}
+
+                    <tr>
+
+                        <td>
+                            {{ activity.transaction_date }}
+                        </td>
+
+                        <td>
+                            <strong>{{ activity.item_name }}</strong>
+                        </td>
+
+                        <td>
+                            {{ activity.transaction_type }}
+                        </td>
+
+                        <td>
+                            {{ activity.quantity }}
+                        </td>
+
+                        <td>
+                            {{ activity.reason or "No reason provided" }}
+                        </td>
+
+                    </tr>
+
+                    {% else %}
+
+                    <tr>
+                        <td colspan="5" class="empty-report">
+                            No inventory activity recorded during this period.
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- COMPLAINT ACTIVITY -->
+    <div class="report-section">
+
+        <div class="report-section-heading">
+
+            <div class="section-icon">
+                📝
+            </div>
+
+            <div>
+                <h3>Complaint History</h3>
+                <p>Complaints recorded during this reporting period</p>
+            </div>
+
+        </div>
+
+
+        <div class="report-table-wrapper">
+
+            <table class="report-table">
+
+                <thead>
+
+                    <tr>
+                        <th>Complaint</th>
+                        <th>Laboratory</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                        <th>Created</th>
+                        <th>Resolved</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for complaint in complaint_activity %}
+
+                    <tr>
+
+                        <td>
+                            <strong>
+                                #{{ complaint.complaint_id }}
+                            </strong>
+                            <br>
+                            {{ complaint.title }}
+                        </td>
+
+                        <td>
+                            {{ complaint.lab_number or "Not specified" }}
+                        </td>
+
+                        <td>
+                            {{ complaint.priority }}
+                        </td>
+
+                        <td>
+                            {{ complaint.status }}
+                        </td>
+
+                        <td>
+                            {{ complaint.created_at }}
+                        </td>
+
+                        <td>
+                            {{ complaint.resolved_at or "—" }}
+                        </td>
+
+                    </tr>
+
+                    {% else %}
+
+                    <tr>
+                        <td colspan="6" class="empty-report">
+                            No complaints recorded during this period.
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>
+{% block title %}{% endblock %}
+</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2>Smart Lab</h2>
+
+<ul>
+
+<li>
+<a href="{{ url_for('dashboard') }}">
+<i class="fa-solid fa-house"></i>
+Dashboard
+</a>
+</li>
+
+<li>
+<a href="{{ url_for('laboratories') }}">
+<i class="fa-solid fa-flask"></i>
+Laboratories
+</a>
+</li>
+
+<li>
+<a href="{{ url_for('computers') }}">
+<i class="fa-solid fa-computer"></i>
+Computers
+</a>
+</li>
+
+<li>
+<a href="{{ url_for('maintenance') }}">
+<i class="fa-solid fa-screwdriver-wrench"></i>
+Maintenance
+</a>
+</li>
+
+<li>
+<a href="{{ url_for('complaints') }}">
+<i class="fa-solid fa-triangle-exclamation"></i>
+Complaints
+</a>
+</li>
+<li>
+<a href="{{ url_for('inventory') }}">
+<i class="fa-solid fa-boxes-stacked"></i>
+Inventory
+</a>
+</li>
+
+<li>
+<a href="{{ url_for('reports') }}">
+<i class="fa-solid fa-chart-column"></i>
+Reports
+</a>
+</li>
+
+<li>
+<a href="{{ url_for('logout') }}">
+<i class="fa-solid fa-right-from-bracket"></i>
+Logout
+</a>
+</li>
+
+</ul>
+
+</div>
+
+<div class="main-content">
+
+<div class="topbar">
+
+<h2>Smart College Laboratory Management System</h2>
+
+<h4>
+Welcome,
+{{ session["full_name"] }}
+</h4>
+
+</div>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+
+{% for category,message in messages %}
+
+<div class="flash {{ category }}">
+{{ message }}
+</div>
+
+{% endfor %}
+
+{% endif %}
+{% endwith %}
+
+{% block content %}
+{% endblock %}
+
+</div>
+
+</body>
+
+</html>
